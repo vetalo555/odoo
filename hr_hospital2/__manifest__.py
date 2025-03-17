@@ -10,12 +10,14 @@
         'python': [],
     },
     'data': ['security/ir.model.access.csv',
+            'views/hr_hospital_menu.xml',
             'views/hr_hospital_doctor.xml',
-             'views/hr_hospital_menu.xml'
+             'views/hr_hospital_patient.xml'
+
 
 
              ],
-   # 'demo': ['demo/demo_data.xml'],
+    'demo': ['demo/hr_hospital_demo.xml'],
     'installable': True,
     'auto_install': False,
     'images': [
