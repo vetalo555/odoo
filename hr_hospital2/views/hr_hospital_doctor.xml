@@ -10,6 +10,7 @@
             </tree>
         </field>
     </record>
+
     <record id="view_doctor_form" model="ir.ui.view">
         <field name="name">hr.hospital.doctor.form ()</field>
         <field name="model">hr.hospital.doctor</field>
@@ -37,6 +38,5 @@
                   action="view_doctor_window"
                   parent="menu_hr_hospital_doctors"
                   name="Doctor" sequence="200"/>
-
 
 </odoo>

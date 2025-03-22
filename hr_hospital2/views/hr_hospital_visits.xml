@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_visit_tree" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.tree ()</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="diagnosis_ids"/>
+                <field name="doctor_id"/>
+                <field name="visit_planned_datetime"/>
+                <field name="visit_finished_datetime"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_visit_form" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.form ()</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="diagnosis_ids"/>
+                            <field name="doctor_id"/>
+                        </group>
+                        <group>
+                            <field name="visit_planned_datetime"/>
+                            <field name="visit_finished_datetime"/>
+                            <field name="status" widget="radio"/>
+                    </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_visit_window" model="ir.actions.act_window">
+            <field name="name">Visit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.hospital.visit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="view_visit_menu"
+                  action="view_visit_window"
+                  parent="menu_hr_hospital_visits"
+                  name="Visits" sequence="200"/>
+</odoo>

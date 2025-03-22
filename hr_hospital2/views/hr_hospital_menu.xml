@@ -3,13 +3,21 @@
 <odoo>
 
   <menuitem id="hr_hospital_menu_root"
-            name="HR Hospital" sequence="300"/>
+            name="HR Hospital" sequence="100"/>
 
   <menuitem id="menu_hr_hospital_patients"
             parent="hr_hospital_menu_root"
-            name="Patients" sequence="100"/>
+            name="Patients" sequence="200"/>
 
   <menuitem id="menu_hr_hospital_doctors"
             parent="hr_hospital_menu_root"
-            name="Doctors" sequence="900"/>
+            name="Doctors" sequence="300"/>
+
+   <menuitem id="menu_hr_hospital_visits"
+            parent="hr_hospital_menu_root"
+            name="Visits" sequence="400"/>
+
+    <menuitem id="menu_hr_hospital_diagnosis"
+            parent="hr_hospital_menu_root"
+            name="Diagnosis" sequence="400"/>
 </odoo>

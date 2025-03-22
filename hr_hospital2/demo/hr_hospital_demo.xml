@@ -1,37 +1,37 @@
 <odoo>
     <record id="disease_1" model="hr.hospital.disease">
-        <field name="name">Грип</field>
+        <field name="name">Flue</field>
     </record>
     <record id="disease_2" model="hr.hospital.disease">
-        <field name="name">Застуда</field>
+        <field name="name">Cold</field>
     </record>
     <record id="disease_3" model="hr.hospital.disease">
         <field name="name">COVID-19</field>
     </record>
 
     <record id="doctor_1" model="hr.hospital.doctor">
-        <field name="name">Михайло Михайлов</field>
-        <field name="specialty">Кардіолог</field>
+        <field name="name">Mikhail Mikhailov</field>
+        <field name="specialty">Kardiology</field>
     </record>
     <record id="doctor_2" model="hr.hospital.doctor">
-        <field name="name">Іван Іванов</field>
-        <field name="specialty">Невропатолог</field>
+        <field name="name">Ivan Ivanov</field>
+        <field name="specialty">Surgery</field>
     </record>
     <record id="doctor_3" model="hr.hospital.doctor">
-        <field name="name">Петро Петров</field>
-        <field name="specialty">Педіатр</field>
+        <field name="name">Petro Petrov</field>
+        <field name="specialty">Therapy</field>
     </record>
 
     <record id="patient_1" model="hr.hospital.patient">
-        <field name="name">Петро Порошенко</field>
+        <field name="name">Petro Poroshenko</field>
         <field name="doctor_id" ref="doctor_1"/>
     </record>
     <record id="patient_2" model="hr.hospital.patient">
-        <field name="name">Юлія Тимошенко</field>
+        <field name="name">Juliya Tymoshenko</field>
         <field name="doctor_id" ref="doctor_2"/>
     </record>
     <record id="patient_3" model="hr.hospital.patient">
-        <field name="name">Олексій Арестович</field>
+        <field name="name">Arseniy Yatsenuk</field>
         <field name="doctor_id" ref="doctor_3"/>
     </record>
 </odoo>
