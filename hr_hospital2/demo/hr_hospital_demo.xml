@@ -1,25 +1,57 @@
 <odoo>
-    <record id="disease_1" model="hr.hospital.disease">
-        <field name="name">Flue</field>
-    </record>
-    <record id="disease_2" model="hr.hospital.disease">
-        <field name="name">Cold</field>
-    </record>
-    <record id="disease_3" model="hr.hospital.disease">
-        <field name="name">COVID-19</field>
-    </record>
+ <!-- Створення основних категорій захворювань -->
+        <record id="disease_infectious" model="hr.hospital.disease">
+            <field name="name">Infectious diseases</field>
+        </record>
+        <record id="disease_cardio" model="hr.hospital.disease">
+            <field name="name">Cardiological diseases</field>
+        </record>
+
+        <!-- Створення підкатегорій для Інфекційних захворювань -->
+        <record id="disease_flu" model="hr.hospital.disease">
+            <field name="name">Flue</field>
+            <field name="parent_id" ref="disease_infectious"/>
+        </record>
+        <record id="disease_flu_type_a" model="hr.hospital.disease">
+            <field name="name">Flue Type A</field>
+            <field name="parent_id" ref="disease_flu"/>
+        </record>
+        <record id="disease_flu_type_b" model="hr.hospital.disease">
+            <field name="name">Flue Type B</field>
+            <field name="parent_id" ref="disease_flu"/>
+        </record>
+        <record id="disease_tb" model="hr.hospital.disease">
+            <field name="name">Tuberculosis</field>
+            <field name="parent_id" ref="disease_infectious"/>
+        </record>
+        <record id="disease_tb_lung" model="hr.hospital.disease">
+            <field name="name">Pulmonary tuberculosis</field>
+            <field name="parent_id" ref="disease_tb"/>
+        </record>
+        <record id="disease_tb_extrapulmonary" model="hr.hospital.disease">
+            <field name="name">Extrapulmonary tuberculosis</field>
+            <field name="parent_id" ref="disease_tb"/>
+        </record>
+        <record id="disease_ihd" model="hr.hospital.disease">
+            <field name="name">Coronary heart disease</field>
+            <field name="parent_id" ref="disease_cardio"/>
+        </record>
+        <record id="disease_hypertension" model="hr.hospital.disease">
+            <field name="name">Hypertensive disease</field>
+            <field name="parent_id" ref="disease_cardio"/>
+        </record>
 
     <record id="doctor_1" model="hr.hospital.doctor">
         <field name="name">Mikhail Mikhailov</field>
-        <field name="specialty">Kardiology</field>
+<!--        <field name="specialty">Kardiology</field>-->
     </record>
     <record id="doctor_2" model="hr.hospital.doctor">
         <field name="name">Ivan Ivanov</field>
-        <field name="specialty">Surgery</field>
+<!--        <field name="specialty">Surgery</field>-->
     </record>
     <record id="doctor_3" model="hr.hospital.doctor">
         <field name="name">Petro Petrov</field>
-        <field name="specialty">Therapy</field>
+<!--        <field name="specialty">Therapy</field>-->
     </record>
 
     <record id="patient_1" model="hr.hospital.patient">

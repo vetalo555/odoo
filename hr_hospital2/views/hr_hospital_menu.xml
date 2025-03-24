@@ -19,5 +19,9 @@
 
     <menuitem id="menu_hr_hospital_diagnosis"
             parent="hr_hospital_menu_root"
-            name="Diagnosis" sequence="400"/>
+            name="Diagnosis" sequence="500"/>
+
+    <menuitem id="menu_hr_hospital_disease"
+            parent="hr_hospital_menu_root"
+            name="Disease" sequence="400"/>
 </odoo>

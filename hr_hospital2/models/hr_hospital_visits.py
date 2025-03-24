@@ -36,4 +36,29 @@ class Visits(models.Model):
             if record.status == 'finished':
                 raise ValidationError("You cannot modify the date/time or doctor of a completed visit.")
 
+    @api.constrains('diagnosis_ids')
+    def toggle_active(self):
+        for record in self:
+            if record.diagnosis_ids:
+                raise ValidationError("You cannot modify the visit if there are diagnosis.")
 
+    def unlink(self):
+        for record in self:
+            if record.diagnosis_ids:
+                raise ValidationError("You cannot delete the visit if there are diagnosis.")
+        return super(Visits, self).unlink()
+
+
+    @api.constrains('doctor_id', 'patient_id', 'visit_planned_datetime')
+    def _check_unique_appointment(self):
+        for record in self:
+            if record.visit_planned_datetime:
+                visit = [
+                    ('id', '!=', record.id),
+                    ('patient_id', '=', record.patient_id.id),
+                    ('doctor_id', '=', record.doctor_id.id),
+                    ('visit_planned_datetime', '>=', record.visit_planned_datetime.replace(hour=0, minute=0, second=0)),
+                    ('visit_planned_datetime', '<', record.visit_planned_datetime.replace(hour=23, minute=59, second=59))
+                ]
+                if self.search_count(visit) > 0:
+                    raise ValidationError("Patient already has an appointment with this doctor on this day!")
