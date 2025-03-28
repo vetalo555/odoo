@@ -23,5 +23,10 @@
 
     <menuitem id="menu_hr_hospital_disease"
             parent="hr_hospital_menu_root"
-            name="Disease" sequence="400"/>
+            name="Disease" sequence="600"/>
+
+    <menuitem id="menu_hr_hospital_reports"
+            parent="hr_hospital_menu_root"
+            name="Disease Report" sequence="700"/>
+
 </odoo>

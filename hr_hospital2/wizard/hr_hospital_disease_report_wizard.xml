@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<odoo>-->
+<!--&lt;!&ndash;    <record id="view_disease_report_wizard_form" model="ir.ui.view">&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="name">hr.hospital.disease.report.wizard.form()</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="model">hr.hospital.disease.report.wizard</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="arch" type="xml">&ndash;&gt;-->
+<!--&lt;!&ndash;            <form string="Generate Disease Report">&ndash;&gt;-->
+<!--&lt;!&ndash;                <sheet>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <field name="doctor_ids" widget="many2many_tags"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <field name="disease_ids" widget="many2many_tags"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <field name="date_from"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <field name="date_to"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <footer>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button string="Generate Report" type="object" name="action_generate_report" class="btn-primary"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button string="Cancel" type="object" class="btn-secondary" special="cancel"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </footer>&ndash;&gt;-->
+<!--&lt;!&ndash;                </sheet>&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--&lt;!&ndash;        </field>&ndash;&gt;-->
+<!--&lt;!&ndash;    </record>&ndash;&gt;-->
+
+<!--    <record id="view_disease_report_wizard_form" model="ir.ui.view">-->
+<!--        <field name="name">disease.report.wizard.form</field>-->
+<!--        <field name="model">hr_hospital.disease_report_wizard</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Disease Report">-->
+<!--                <group>-->
+<!--                    <field name="doctor_ids" widget="many2many_tags"/>-->
+<!--                    <field name="disease_ids" widget="many2many_tags"/>-->
+<!--                    <field name="date_from"/>-->
+<!--                    <field name="date_to"/>-->
+<!--                </group>-->
+<!--                <footer>-->
+<!--                    <button string="Generate" type="object" name="generate_report" class="btn-primary"/>-->
+<!--                    <button string="Cancel" class="btn-secondary" special="cancel"/>-->
+<!--                </footer>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="action_disease_report_wizard" model="ir.actions.act_window">-->
+<!--        <field name="name">Disease Report</field>-->
+<!--        <field name="res_model">hr.hospital.disease.report.wizard</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="view_id" ref="view_disease_report_wizard_form"/>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+
+<!--    <menuitem id="menu_hr_hospital_reports"-->
+<!--              name="Hospital Reports"-->
+<!--              parent="hr_hospital_menu_root"-->
+<!--              sequence="10"/>-->
+<!--&lt;!&ndash;              parent="hr_hospital_menu_root"&ndash;&gt;-->
+
+
+<!--    &lt;!&ndash; Дія для запуску візарду через меню &ndash;&gt;-->
+<!--    <record id="action_disease_report_wizard" model="ir.actions.act_window">-->
+<!--        <field name="name">Generate Disease Report</field>-->
+<!--        <field name="res_model">hr.hospital.disease.report.wizard</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Пункт меню для запуску звіту &ndash;&gt;-->
+<!--    <menuitem id="menu_hr_hospital_disease_report_action"-->
+<!--              name="Generate Disease Report"-->
+<!--              action="action_disease_report_wizard"-->
+<!--              parent="menu_hr_hospital_reports"-->
+<!--              sequence="10"/>-->
+<!--</odoo>-->
+
+<odoo>
+    <!-- Уявлення форми візарда -->
+    <record id="view_disease_report_wizard_form" model="ir.ui.view">
+        <field name="name">hr.hospital.disease.report.wizard.form()</field>
+        <field name="model">hr.hospital.disease.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Disease Report">
+                <group>
+                    <group>
+                        <field name="doctor_ids" widget="many2many_tags" string="Doctors"/>
+                        <field name="disease_ids" widget="many2many_tags" string="Diseases"/>
+                    </group>
+                    <group>
+                        <field name="date_from" string="From Date"/>
+                        <field name="date_to" string="To Date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Generate Report" type="object" name="generate_report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<!--    &lt;!&ndash; Дія для візарда &ndash;&gt;-->
+<!--    <record id="action_disease_report_wizard" model="ir.actions.act_window">-->
+<!--        <field name="name">Disease Report Wizard</field>-->
+<!--        <field name="res_model">hr.hospital.disease.report.wizard</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Пункт меню для виклику візарда &ndash;&gt;-->
+<!--    <menuitem id="menu_disease_report_wizard"-->
+<!--              name="Generate Disease Report"-->
+<!--              parent="hr_hospital_menu_root"-->
+<!--              action="action_disease_report_wizard"/>-->
+
+    <!-- Дія для візарда -->
+<!--    <record id="action_disease_report_wizard" model="ir.actions.act_window">-->
+<!--        <field name="name">Disease Report Wizard</field>-->
+<!--        <field name="res_model">hr.hospital.disease.report.wizard</field>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="target">new</field>-->
+<!--    </record>-->
+<!--    <record id="doctor_action_print" model="ir.actions.server">-->
+<!--        <field name="name">Print Disease Report</field>-->
+<!--        <field name="model_id" ref="hr_hospital.model_hr_hospital_doctor"/>-->
+<!--        <field name="binding_model_id" ref="hr_hospital.model_hr_hospital_doctor"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">action = env.ref('hr_hospital.action_disease_report_wizard').read()[0]-->
+<!--            action['context'] = dict(env.context)-->
+<!--            action['context'].update({'default_doctor_ids': records.ids})-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Додавання до меню "Print" у перегляді форми &ndash;&gt;-->
+<!--    <record id="doctor_print_action_form" model="ir.ui.view">-->
+<!--        <field name="name">doctor.form.button.print</field>-->
+<!--        <field name="model">hr.hospital.doctor</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <data>-->
+<!--                <xpath expr="//header" position="inside">-->
+<!--                    <button name="%(hr_hospital.doctor_action_print)d"-->
+<!--                            string="Print Disease Report"-->
+<!--                            type="action" class="btn-secondary"/>-->
+<!--                </xpath>-->
+<!--            </data>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Додавання до меню "Print" у перегляді списку &ndash;&gt;-->
+<!--    <record id="doctor_print_action_tree" model="ir.ui.view">-->
+<!--        <field name="name">doctor.list.button.print</field>-->
+<!--        <field name="model">hr_hospital.doctor</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <data>-->
+<!--                <xpath expr="//tree" position="inside">-->
+<!--                    <button name="%(hr_hospital.doctor_action_print)d"-->
+<!--                            string="Print Disease Report"-->
+<!--                            type="action" class="btn-secondary"/>-->
+<!--                </xpath>-->
+<!--            </data>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    &lt;!&ndash; Додання пункту "Print" для перегляду "list" та "form" &ndash;&gt;-->
+<!--    <record id="doctor_action_print" model="ir.actions.server">-->
+<!--        <field name="name">Print Disease Report</field>-->
+<!--        <field name="model_id" ref="hr.hospital.model.hr.hospital.doctor"/>-->
+<!--        <field name="binding_model_id" ref="hr.hospital.model.hr.hospital.doctor"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            action = env.ref('hr_hospital.action_disease_report_wizard').read()[0]-->
+<!--            action['context'] = dict(env.context)-->
+<!--            action['context'].update({'default_doctor_ids': [record.id for record in model]})-->
+<!--        </field>-->
+<!--    </record>-->
+</odoo>
