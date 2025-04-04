@@ -48,6 +48,3 @@ class Disease(models.Model):
             return super()._compute_display_name()
         for record in self:
             record.display_name = record.name
-
-
-

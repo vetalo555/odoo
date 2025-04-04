@@ -19,6 +19,10 @@
         <field name="model">hr.hospital.doctor</field>
         <field name="arch" type="xml">
             <form>
+                <button name="%(hr_hospital2.action_disease_report_wizard)d"
+                                string="Print Diagnosis Report"
+                                type="action"
+                                context="{'default_doctor_ids': [active_id]}"/>
                 <sheet>
                     <group>
                     <group>
@@ -61,7 +65,7 @@
                 <field name="specialty_id"/>
                 <templates>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_content">
+                        <div class="oe_kanban_global_click">
                             <strong><field name="name"/></strong>
                             <div><field name="specialty_id"/></div>
                             <strong>Intern:</strong>

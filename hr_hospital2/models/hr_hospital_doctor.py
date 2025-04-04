@@ -34,5 +34,3 @@ class Doctor(models.Model):
             'target': 'new',
             'context': {'default_doctor_id': self.id},
         }
-
-

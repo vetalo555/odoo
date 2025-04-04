@@ -33,6 +33,20 @@
             </form>
         </field>
     </record>
+      <record id="hr_hospital_disease_search" model="ir.ui.view">
+        <field name="name">hr.hospital.disease.search (hr_hospital_disease)</field>
+        <field name="model">hr.hospital.disease</field>
+        <field name="arch" type="xml">
+            <search string="Filters">
+                <field name="name"/>
+                <searchpanel>
+                    <field name="parent_id" string="Filter" hierarchize="1" select="one"
+                           enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
     <record id="view_disease_window" model="ir.actions.act_window">
             <field name="name">Disease</field>
             <field name="type">ir.actions.act_window</field>

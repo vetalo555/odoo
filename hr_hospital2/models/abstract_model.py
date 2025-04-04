@@ -15,4 +15,3 @@ class Person(models.AbstractModel):
         ('female', 'Female')],
         string='Gender'
     )
-

@@ -20,4 +20,4 @@ class SetPersonalDoctorWizard(models.TransientModel):
         self.ensure_one()
         self.patient_ids.write({
             'doctor_id': self.doctor_id.id, })
-        print(self.patient_ids)
+

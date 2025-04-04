@@ -1,6 +1,6 @@
 from datetime import date
 from odoo import models, fields, api
-from odoo.tools.populate import compute
+
 
 
 class Patients(models.Model):
@@ -70,4 +70,3 @@ class Patients(models.Model):
         for patient in self:
             diagnosis_set = patient.visits_ids.mapped('diagnosis_ids')
             patient.diagnosis_ids = diagnosis_set
-            print(patient.diagnosis_ids)

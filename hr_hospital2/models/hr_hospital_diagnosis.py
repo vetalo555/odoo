@@ -14,4 +14,14 @@ class Diagnosis(models.Model):
     )
     subscribe = fields.Text(string='Subscribe')
     approved = fields.Boolean(string='Approved')
+    create_date = fields.Datetime(string='Creation Date', readonly=True)
 
+    disease_type_id = fields.Many2one(
+        'hr.hospital.disease', string='Disease Type',
+        related='disease_id.parent_id', store=True)
+
+    diagnosis_count = fields.Integer(
+        string="Diagnoses Count",
+        default=1,
+        readonly=True
+    )

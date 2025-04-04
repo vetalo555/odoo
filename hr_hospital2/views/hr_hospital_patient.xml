@@ -20,10 +20,8 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <group string="Actions">
-                        <button name="action_view_visits" type="object" string="View Visit History" class="btn-primary"/>
+                        <button name="action_view_visits" type="object" string="View Visit History" class="btn-secondary" />
                         <button name="action_create_visit" type="object" string="Create Visit" class="btn-secondary"/>
-                    </group>
                 </header>
                 <sheet>
                     <group>
