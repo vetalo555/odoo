@@ -42,16 +42,4 @@
             </tree>
         </field>
     </record>
-
-<!--    <record id="hr_hospital_patient_action" model="ir.ui.view">-->
-<!--    <field name="name">hr.hospital.patient.tree</field>-->
-<!--    <field name="model">hr.hospital.patient</field>-->
-<!--    <field name="arch" type="xml">-->
-<!--        <tree>-->
-<!--            <field name="name"/>-->
-<!--            <field name="doctor_id"/>-->
-<!--            <button name="%(action_set_personal_doctor_wizard)d" string="Set Personal Doctor" type="action" class="oe_highlight"/>-->
-<!--        </tree>-->
-<!--    </field>-->
-<!--</record>-->
 </odoo>

@@ -20,14 +20,12 @@
             <form>
                 <sheet>
                     <group>
-                        <group>
-                            <field name="visits_id"/>
-                            <field name="disease_id"/>
-                        </group>
-                        <group>
-                            <field name="approved"/>
-                            <field name="subscribe"/>
+                        <field name="visits_id"/>
+                        <field name="disease_id"/>
                     </group>
+                    <group>
+                        <field name="approved"/>
+                        <field name="subscribe"/>
                     </group>
                 </sheet>
             </form>

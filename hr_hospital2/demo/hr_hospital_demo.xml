@@ -66,4 +66,28 @@
         <field name="name">Arseniy Yatsenuk</field>
         <field name="doctor_id" ref="doctor_3"/>
     </record>
+        <record id="visit_demo_1" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_1"/>
+        <field name="doctor_id" ref="doctor_3"/>
+        <field name="visit_planned_datetime">2025-03-01 10:00:00</field>
+        <field name="status">planned</field>
+    </record>
+    <record id="visit_demo_2" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_1"/>
+        <field name="doctor_id" ref="doctor_1"/>
+        <field name="visit_planned_datetime">2025-03-02 14:00:00</field>
+        <field name="status">cancelled</field>
+    </record>
+    <record id="visit_demo_3" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_2"/>
+        <field name="doctor_id" ref="doctor_2"/>
+        <field name="visit_planned_datetime">2025-03-03 11:30:00</field>
+        <field name="status">cancelled</field>
+    </record>
+    <record id="visit_demo_4" model="hr.hospital.visit">
+        <field name="patient_id" ref="patient_3"/>
+        <field name="doctor_id" ref="doctor_3"/>
+        <field name="visit_planned_datetime">2025-03-04 16:00:00</field>
+        <field name="status">planned</field>
+    </record>
 </odoo>

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_patient_tree1" model="ir.ui.view">
+    <record id="view_patient_tree3" model="ir.ui.view">
         <field name="name">hr.hospital.patient.tree ()</field>
         <field name="model">hr.hospital.patient</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
                 <field name="age"/>
+                <field name="phone"/>
                 <field name="doctor_id"/>
+                <field name="contact_person"/>
             </tree>
         </field>
     </record>
@@ -17,10 +19,17 @@
         <field name="model">hr.hospital.patient</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <group string="Actions">
+                        <button name="action_view_visits" type="object" string="View Visit History" class="btn-primary"/>
+                        <button name="action_create_visit" type="object" string="Create Visit" class="btn-secondary"/>
+                    </group>
+                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="age"/>
                             <field name="gender"/>
                             <field name="birthday_date"/>
                             <field name="phone"/>
@@ -33,10 +42,29 @@
                             <field name="doctor_id"/>
                     </group>
                     </group>
+                    <group string="History">
+                           <field name="diagnosis_ids"/>
+                    </group>
+
                 </sheet>
             </form>
         </field>
     </record>
+    <record id="view_patient_search" model="ir.ui.view">
+        <field name="name">hr.hospital.patient.search</field>
+        <field name="model">hr.hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="phone"/>
+                <group expand="1" string="Search Options">
+                    <field name="name"/>
+                    <field name="phone"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record id="view_patient_window" model="ir.actions.act_window">
             <field name="name">Patient</field>
             <field name="type">ir.actions.act_window</field>

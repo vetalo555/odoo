@@ -32,18 +32,55 @@
                                    options='{"zoom": true, "preview_image":"avatar_256"}'/>
                         <field name="intern"/>
                         <field name="doctor_mentor_id"/>
-
                     </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+     <record id="hr_hospital_doctor_search" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.search (hr_hospital_doctor)</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="arch" type="xml">
+            <search string="Filters">
+                <field name="name"/>
+                <group >
+                    <filter string="Mentors" name="status" domain="[('intern','=', False)]" />
+                     <filter string="Interns" name="status" domain="[('intern','=', True)]" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+     <record id="hr_hospital_doctor_kanban" model="ir.ui.view">
+        <field name="name">hr.hospital.doctor.kanban (hr_hospital_doctor)</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="specialty_id">
+                <field name="specialty_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_content">
+                            <strong><field name="name"/></strong>
+                            <div><field name="specialty_id"/></div>
+                            <strong>Intern:</strong>
+                            <div><field name="intern" default="[('intern', '=', True)]"/></div>
+                            <strong>Mentor:</strong>
+                            <div><field name="doctor_mentor_id"/></div>
+                            <button name="action_create_visit" string="Create visit" type="object" class="oe_highlight"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+         </field>
+    </record>
+
     <record id="view_doctor_window" model="ir.actions.act_window">
             <field name="name">Doctor</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">hr.hospital.doctor</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,kanban</field>
         </record>
 
         <menuitem id="view_doctor_menu"

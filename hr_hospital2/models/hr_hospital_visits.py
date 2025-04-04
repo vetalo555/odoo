@@ -10,7 +10,7 @@ class Visits(models.Model):
         ('planned', 'Planned'),
         ('finished', 'Finished'),
         ('cancelled', 'Cancelled')],
-        string='Status'
+        string='Status', required=True, default='planned'
     )
     visit_planned_datetime = fields.Datetime(string='Visit Planned Date')
     visit_finished_datetime = fields.Datetime(string='Visit Finished Date')
@@ -30,7 +30,7 @@ class Visits(models.Model):
         string='Diagnosis'
     )
 
-    @api.constrains('visit_planed_datetime','doctor_id', 'visit_finished_datetime')
+    @api.constrains('visit_planned_datetime','doctor_id', 'visit_finished_datetime')
     def _check_visit_date(self):
         for record in self:
             if record.status == 'finished':
