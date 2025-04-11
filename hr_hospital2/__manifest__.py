@@ -18,7 +18,7 @@
              'views/hr_hospital_disease.xml',
              'views/hr_hospital_diagnosis.xml',
              'wizard/hr_hospital_personal_doctor_wizard_view.xml',
-
+             'report/hr_hospital_report.xml',
 
              ],
     'demo': ['demo/hr_hospital_demo.xml'],

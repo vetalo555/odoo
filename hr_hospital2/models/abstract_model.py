@@ -4,7 +4,7 @@ class Person(models.AbstractModel):
     _name = 'hr.hospital.person'
     _description = 'Abstract Person'
 
-    name = fields.Char(string='Name')
+    name = fields.Char()
     phone = fields.Char(string='Phone number')
     photo = fields.Image(
         max_width=512,

@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from odoo.tools.translate import _
 
 
 class Visits(models.Model):
@@ -34,18 +35,18 @@ class Visits(models.Model):
     def _check_visit_date(self):
         for record in self:
             if record.status == 'finished':
-                raise ValidationError("You cannot modify the date/time or doctor of a completed visit.")
+                raise ValidationError(_("You cannot modify the date/time or doctor of a completed visit."))
 
     @api.constrains('diagnosis_ids')
     def toggle_active(self):
         for record in self:
             if record.diagnosis_ids:
-                raise ValidationError("You cannot modify the visit if there are diagnosis.")
+                raise ValidationError(_("You cannot modify the visit if there are diagnosis."))
 
     def unlink(self):
         for record in self:
             if record.diagnosis_ids:
-                raise ValidationError("You cannot delete the visit if there are diagnosis.")
+                raise ValidationError(_("You cannot delete the visit if there are diagnosis."))
         return super(Visits, self).unlink()
 
 
@@ -61,4 +62,4 @@ class Visits(models.Model):
                     ('visit_planned_datetime', '<', record.visit_planned_datetime.replace(hour=23, minute=59, second=59))
                 ]
                 if self.search_count(visit) > 0:
-                    raise ValidationError("Patient already has an appointment with this doctor on this day!")
+                    raise ValidationError(_("Patient already has an appointment with this doctor on this day!"))

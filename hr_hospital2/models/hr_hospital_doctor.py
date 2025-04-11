@@ -25,6 +25,12 @@ class Doctor(models.Model):
         comodel_name='hr.hospital.patient',
         inverse_name='doctor_id')
 
+    visit_ids = fields.One2many(
+        comodel_name='hr.hospital.visit',
+        inverse_name='doctor_id',
+        string='Visits',
+    )
+
     def action_create_visit(self):
         return {
             'type': 'ir.actions.act_window',

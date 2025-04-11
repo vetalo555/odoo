@@ -61,17 +61,21 @@
         <field name="model">hr.hospital.doctor</field>
         <field name="priority">100</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="specialty_id">
+            <kanban default_group_by="specialty_id" editable="top" deletable="true">
                 <field name="specialty_id"/>
                 <templates>
+                    <t t-name="kanban-menu">
+                            <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                            <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                    </t>
                     <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_content">
                             <strong><field name="name"/></strong>
                             <div><field name="specialty_id"/></div>
-                            <strong>Intern:</strong>
-                            <div><field name="intern" default="[('intern', '=', True)]"/></div>
                             <strong>Mentor:</strong>
-                            <div><field name="doctor_mentor_id"/></div>
+                            <div><field name="doctor_mentor_id"  widget="many2one" /></div>
+                            <strong>Intern:</strong>
+                            <div><field name="interns_ids" widget="many2many_tags"/></div>
                             <button name="action_create_visit" string="Create visit" type="object" class="oe_highlight"/>
                         </div>
                     </t>

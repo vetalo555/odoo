@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_hospital_doctor_paperformat" model="report.paperformat">
+        <field name="name">A4 library book</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">80</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">15</field>
+        <field name="dpi">180</field>
+    </record>
+
+    <record id="hr_hospital_doctor_main_report" model="ir.actions.report">
+        <field name="name">HR Doctor report</field>
+        <field name="model">hr.hospital.doctor</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">hr_hospital2.hr_hospital_doctor_main_template</field>
+        <field name="report_file">hr_hospital2.hr_hospital_doctor_main_template</field>
+        <field name="print_report_name">(object.name)</field>
+        <field name="attachment"/>
+        <field name="binding_model_id" ref="model_hr_hospital_doctor"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="hr_hospital2.hr_hospital_doctor_paperformat"/>
+    </record>
+
+   <template id="hr_hospital_doctor_main_template">
+      <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-set="doc_date" t-value="datetime.datetime.now().strftime('%d.%m.%Y %H:%M')"/>
+                    <t t-foreach="docs" t-as="doctor">
+                    <div class="page">
+                        <h1 style="text-align: center;">
+                            <t t-esc="doctor.name"/>
+                        </h1>
+                        <h2 style="text-align: center;">
+                            <t t-esc="doctor.specialty_id.name"/>
+                        </h2>
+
+                        <h3 style="margin-top: 30px;">Visit History:</h3>
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Patient</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="visits_sorted" t-value="doctor.visit_ids.sorted(key=lambda r: r.visit_planned_datetime, reverse=True)"/>
+                                    <t t-foreach="visits_sorted" t-as="visit">
+                                        <tr>
+                                            <td><t t-esc="visit.visit_planned_datetime.strftime('%d.%m.%Y')"/></td>
+                                            <td><t t-esc="visit.patient_id.name"/></td>
+                                        </tr>
+                                    </t>
+                            </tbody>
+                        </table>
+                        <h4 style="margin-top: 30px;">Patients list:</h4>
+
+                        <table class="table table-sm table-bordered" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Gender</th>
+                                    <th>Birth_Date</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            <t t-foreach="doctor.visit_ids" t-as="visit">
+                                <t t-if="visit.patient_id">
+                                    <tr>
+                                        <td><t t-esc="visit.patient_id.name"/></td>
+                                        <td><t t-esc="visit.patient_id.gender"/></td>
+                                        <td><t t-esc="visit.patient_id.birthday_date.strftime('%d.%m.%Y') if visit.patient_id.birthday_date else ''"/></td>
+                                        <td><t t-esc="visit.patient_id.phone or ''"/></td>
+                                    <td>
+                                        <div t-if="visit.status == 'planned'" style="background-color: #fff3cd; padding: 5px;">
+                                            planned
+                                        </div>
+                                        <div t-if="visit.status == 'finished'" style="background-color: #d4edda; padding: 5px;">
+                                            finished
+                                        </div>
+                                        <div t-if="visit.status == 'cancelled'" style="background-color: #f8d7da; padding: 5px;">
+                                            cancelled
+                                        </div>
+                                     </td>
+                                 </tr>
+                                </t>
+                             </t>
+                            </tbody>
+                        </table>
+                           <div class="text-center" style="padding-top: 10px;">
+                            <t t-esc="doc_date"/> |
+                            <t t-esc="request.env.user.company_id.city"/>
+                           </div>
+                    </div>
+                </t>
+             </t>
+        </t>
+    </template>
+
+</odoo>
+

@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from odoo.tools.translate import _
 
 
 class Disease(models.Model):
@@ -35,7 +36,7 @@ class Disease(models.Model):
     @api.constrains('parent_id')
     def _check_category_recursion(self):
         if not self._check_recursion():
-            raise ValidationError('You cannot create recursive categories.')
+            raise ValidationError(_('You cannot create recursive categories.'))
 
     @api.model
     def name_create(self, name):
