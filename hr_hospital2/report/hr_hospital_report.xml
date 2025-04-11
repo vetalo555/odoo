@@ -97,14 +97,15 @@
                              </t>
                             </tbody>
                         </table>
-                           <div class="text-center" style="padding-top: 10px;">
-                            <t t-esc="doc_date"/> |
-                            <t t-esc="request.env.user.company_id.city"/>
-                           </div>
+
+                    </div>
+                </t>
+                    <div class="text-center" style="padding-top: 10px;">
+                        <t t-esc="doc_date"/> |
+                        <t t-esc="request.env.user.company_id.city"/>
                     </div>
                 </t>
              </t>
-        </t>
     </template>
 
 </odoo>
