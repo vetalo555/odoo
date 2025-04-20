@@ -3,7 +3,7 @@
 <odoo>
 
   <menuitem id="hr_hospital_menu_root"
-            name="HR Hospital" sequence="100"/>
+            name="Hospital" sequence="100"/>
 
   <menuitem id="menu_hr_hospital_patients"
             parent="hr_hospital_menu_root"
@@ -12,6 +12,7 @@
   <menuitem id="menu_hr_hospital_doctors"
             parent="hr_hospital_menu_root"
             name="Doctors" sequence="300"/>
+
 
    <menuitem id="menu_hr_hospital_visits"
             parent="hr_hospital_menu_root"
@@ -23,7 +24,7 @@
 
     <menuitem id="menu_hr_hospital_disease"
             parent="hr_hospital_menu_root"
-            name="Disease" sequence="600"/>
+            name="Diseases" sequence="600"/>
 
     <menuitem id="menu_hr_hospital_reports"
             parent="hr_hospital_menu_root"

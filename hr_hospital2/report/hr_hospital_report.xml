@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <t t-set="visits_sorted" t-value="doctor.visit_ids.sorted(key=lambda r: r.visit_planned_datetime, reverse=True)"/>
+                                <t t-set="visits_sorted" t-value="doctor.visits_ids.sorted(key=lambda r: r.visit_planned_datetime, reverse=True)"/>
                                     <t t-foreach="visits_sorted" t-as="visit">
                                         <tr>
                                             <td><t t-esc="visit.visit_planned_datetime.strftime('%d.%m.%Y')"/></td>
@@ -74,7 +74,7 @@
                             </thead>
                             <tbody>
 
-                            <t t-foreach="doctor.visit_ids" t-as="visit">
+                            <t t-foreach="doctor.visits_ids" t-as="visit">
                                 <t t-if="visit.patient_id">
                                     <tr>
                                         <td><t t-esc="visit.patient_id.name"/></td>

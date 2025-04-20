@@ -4,7 +4,7 @@
         <field name="name">hr.hospital.set.personal.doctor.wizard.form</field>
         <field name="model">hr.hospital.set.personal.doctor.wizard</field>
         <field name="arch" type="xml">
-            <form string="Set Personal Doctor">
+            <form string="Assign Personal Doctor">
                 <sheet>
                     <group>
                         <field name="doctor_id"/>
@@ -13,7 +13,7 @@
                         <field name="patient_ids" widget="many2many_tags"/>
                     </group>
                     <footer>
-                        <button string="Set Doctor" type="object" name="action_set_doctor" class="btn-primary"/>
+                        <button string="Assign Doctor" type="object" name="action_set_doctor" class="btn-primary"/>
                         <button string="Cancel" type="object" class="btn-secondary" special="cancel"/>
                     </footer>
                 </sheet>
@@ -22,7 +22,7 @@
     </record>
 
     <record id="action_set_personal_doctor_wizard" model="ir.actions.act_window">
-        <field name="name">Set Personal Doctor</field>
+        <field name="name">Assign Personal Doctor</field>
         <field name="res_model">hr.hospital.set.personal.doctor.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="hr_hospital_set_personal_doctor_wizard_form"/>
@@ -35,7 +35,7 @@
         <field name="arch" type="xml">
             <tree>
                 <header>
-                    <button name="%(action_set_personal_doctor_wizard)d" string="Set Personal Doctor" type="action" class="oe_highlight"/>
+                    <button name="%(action_set_personal_doctor_wizard)d" string="Assign Personal Doctor" type="action" class="oe_highlight"/>
                 </header>
                 <field name="name"/>
                 <field name="doctor_id"/>

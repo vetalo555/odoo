@@ -4,4 +4,4 @@ class Speciality(models.Model):
     _name = 'hr.hospital.speciality'
     _description = 'Speciality'
 
-    name = fields.Char()
+    name = fields.Char(string='Name')

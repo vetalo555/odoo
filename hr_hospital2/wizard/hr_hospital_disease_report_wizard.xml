@@ -4,7 +4,7 @@
         <field name="name">hr.hospital.disease.report.wizard.form</field>
         <field name="model">hr.hospital.disease.report.wizard</field>
         <field name="arch" type="xml">
-            <form string="Generate Disease Report">
+            <form string="Create Disease Report">
                 <group>
                     <field name="doctor_ids" widget="many2many_tags" placeholder="Select doctors..."/>
                     <field name="disease_ids" widget="many2many_tags" placeholder="Select diseases..."/>
@@ -12,7 +12,7 @@
                     <field name="date_to"/>
                 </group>
                 <footer>
-                    <button string="Generate Report" type="object" name="generate_report" class="btn-primary"/>
+                    <button string="Create Report" type="object" name="generate_report" class="btn-primary"/>
                     <button string="Cancel" type="object" class="btn-default" special="cancel"/>
                 </footer>
             </form>

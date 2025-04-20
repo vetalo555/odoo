@@ -12,6 +12,7 @@ class Diagnosis(models.Model):
         comodel_name='hr.hospital.disease',
         string='Diseases'
     )
+
     subscribe = fields.Text(string='Subscribe')
     approved = fields.Boolean(string='Approved')
     create_date = fields.Datetime(string='Creation Date', readonly=True)
@@ -21,7 +22,7 @@ class Diagnosis(models.Model):
         related='disease_id.parent_id', store=True)
 
     diagnosis_count = fields.Integer(
-        string="Diagnoses Count",
+        string='Diagnoses Count',
         default=1,
         readonly=True
     )

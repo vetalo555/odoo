@@ -27,6 +27,7 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="user_id"/>
                             <field name="age"/>
                             <field name="gender"/>
                             <field name="birthday_date"/>
@@ -55,7 +56,7 @@
             <search>
                 <field name="name"/>
                 <field name="phone"/>
-                <group expand="1" string="Search Options">
+                <group expand="1" string="Search Parameters">
                     <field name="name"/>
                     <field name="phone"/>
                 </group>
@@ -79,5 +80,5 @@
         <menuitem id="view_patient_menu3"
                   action="view_patient_window3"
                   parent="menu_hr_hospital_patients"
-                  name="Patient3" sequence="200"/>
+                  name="Patients" sequence="200"/>
 </odoo>

@@ -4,8 +4,13 @@ from odoo.tools.translate import _
 
 
 class Visits(models.Model):
+    """
+    Represents a visit in the hospital. Stores information about doctor, patient,
+    visit status, dates, and diagnosis. Includes validation logic.
+    """
     _name = 'hr.hospital.visit'
     _description = 'Visit'
+    description = fields.Text(string='Description')
 
     status = fields.Selection(selection=[
         ('planned', 'Planned'),
@@ -33,17 +38,26 @@ class Visits(models.Model):
 
     @api.constrains('visit_planned_datetime','doctor_id', 'visit_finished_datetime')
     def _check_visit_date(self):
+        """
+        Prevent modification of date/time or doctor for finished visits.
+        """
         for record in self:
             if record.status == 'finished':
                 raise ValidationError(_("You cannot modify the date/time or doctor of a completed visit."))
 
     @api.constrains('diagnosis_ids')
     def toggle_active(self):
+        """
+        Prevent modification of visit if there are diagnosis linked.
+        """
         for record in self:
             if record.diagnosis_ids:
                 raise ValidationError(_("You cannot modify the visit if there are diagnosis."))
 
     def unlink(self):
+        """
+        Prevent deletion of visits that have diagnosis linked.
+        """
         for record in self:
             if record.diagnosis_ids:
                 raise ValidationError(_("You cannot delete the visit if there are diagnosis."))
@@ -52,6 +66,9 @@ class Visits(models.Model):
 
     @api.constrains('doctor_id', 'patient_id', 'visit_planned_datetime')
     def _check_unique_appointment(self):
+        """
+        Ensure that a patient cannot have multiple appointments with the same doctor on the same day.
+        """
         for record in self:
             if record.visit_planned_datetime:
                 visit = [

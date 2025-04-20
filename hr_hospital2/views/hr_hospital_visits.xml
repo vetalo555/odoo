@@ -65,17 +65,17 @@
         </field>
     </record>
 
-<record id="view_visit_pivot" model="ir.ui.view">
-    <field name="name">hr.hospital.visit.pivot</field>
-    <field name="model">hr.hospital.visit</field>
-    <field name="arch" type="xml">
-        <pivot string="Visit Analysis" sample="1" disable_linking="1" display_quantity="1">
-            <field name="doctor_id" type="row"/>
-            <field name="status" type="col"/>
-            <field name="visit_planned_datetime" interval="month" type="col"/>
-        </pivot>
-    </field>
-</record>
+    <record id="view_visit_pivot" model="ir.ui.view">
+        <field name="name">hr.hospital.visit.pivot</field>
+        <field name="model">hr.hospital.visit</field>
+        <field name="arch" type="xml">
+            <pivot string="Visits Analysis" sample="1" disable_linking="1" display_quantity="1">
+                <field name="doctor_id" type="row"/>
+                <field name="status" type="col"/>
+                <field name="visit_planned_datetime" interval="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
 
 
 

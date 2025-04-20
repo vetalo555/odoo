@@ -52,12 +52,12 @@
     <field name="model">hr.hospital.diagnosis</field>
     <field name="arch" type="xml">
         <graph>
-            <!-- Встановлюємо поле "disease_type_id" (тип хвороби) на осі X -->
+            <!-- Set field "disease_type_id" (disease type) on X axis -->
             <field name="disease_type_id" type="row"/>
-            <!-- Встановлюємо поле "create_date" для осі Y, групуємо по місяцю -->
+            <!-- Set field "create_date" for Y axis, group by month -->
             <field name="create_date" type="col" interval="month"/>
-            <!-- Визначаємо поле, яке буде використовуватися для агрегації (підрахунок діагнозів) -->
-            <field name="id" type="measure" operator="count" string="Diagnoses Count"/>
+            <!-- Define field that will be used for aggregation (diagnosis count) -->
+            <field name="id" type="measure" operator="count" string="Diagnosis Count"/>
         </graph>
     </field>
 </record>

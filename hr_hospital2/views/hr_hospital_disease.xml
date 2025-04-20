@@ -37,7 +37,7 @@
         <field name="name">hr.hospital.disease.search (hr_hospital_disease)</field>
         <field name="model">hr.hospital.disease</field>
         <field name="arch" type="xml">
-            <search string="Filters">
+            <search string="Disease">
                 <field name="name"/>
                 <searchpanel>
                     <field name="parent_id" string="Filter" hierarchize="1" select="one"
