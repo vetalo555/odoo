@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Patient group (lowest level) -->
+    <record id="group_patient" model="res.groups">
+        <field name="name">Patient</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <!-- Intern group (inherits Patient) -->
+    <record id="group_intern" model="res.groups">
+        <field name="name">Intern</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="implied_ids" eval="[(4, ref('hr_hospital2.group_patient'))]"/>
+    </record>
+
+    <!-- Doctor group (inherits Intern) -->
+    <record id="group_doctor" model="res.groups">
+        <field name="name">Doctor</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="implied_ids" eval="[(4, ref('hr_hospital2.group_intern'))]"/>
+    </record>
+
+    <!-- Manager group (inherits Doctor) -->
+    <record id="group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="implied_ids" eval="[(4, ref('hr_hospital2.group_doctor'))]"/>
+    </record>
+
+    <!-- Administrator group (inherits Manager) -->
+    <record id="group_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+        <field name="implied_ids" eval="[(4, ref('hr_hospital2.group_manager'))]"/>
+    </record>
+    <!-- Patient can see only their own visits -->
+    <record id="visit_patient_own_rule" model="ir.rule">
+        <field name="name">Patient: see own visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[('patient_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr_hospital2.group_patient'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <record id="visit_intern_own_rule" model="ir.rule">
+        <field name="name">Intern: see and edit own visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[("doctor_id.user_id", "=", user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr_hospital2.group_intern'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <record id="visit_doctor_own_and_interns_rule" model="ir.rule">
+        <field name="name">Doctor: see/edit own and interns' visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">['|', ('doctor_id.user_id', '=', user.id), ('doctor_id.doctor_mentor_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr_hospital2.group_doctor'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <record id="visit_manager_all_rule" model="ir.rule">
+        <field name="name">Manager: see all visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr_hospital2.group_manager'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    <record id="visit_admin_all_rule" model="ir.rule">
+        <field name="name">Admin: full access to all visits</field>
+        <field name="model_id" ref="model_hr_hospital_visit"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr_hospital2.group_admin'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+<!--    &lt;!&ndash; Пацієнт бачить лише себе &ndash;&gt;-->
+<!--    <record id="res_partner_patient_rule" model="ir.rule">-->
+<!--        <field name="name">Patient: See Own Partner</field>-->
+<!--        <field name="model_id" ref="base.model_res_partner"/>-->
+<!--        <field name="domain_force">[('id', '=', user.partner_id.id)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('hr_hospital2.group_patient'))]"/>-->
+<!--        <field name="perm_read" eval="1"/>-->
+<!--        <field name="perm_write" eval="0"/>-->
+<!--        <field name="perm_create" eval="0"/>-->
+<!--        <field name="perm_unlink" eval="0"/>-->
+<!--    </record>-->
+
+
+<!--    &lt;!&ndash; Менеджер бачить всіх партнерів &ndash;&gt;-->
+<!--    <record id="res_partner_manager_rule" model="ir.rule">-->
+<!--        <field name="name">Manager: See All Partners</field>-->
+<!--        <field name="model_id" ref="base.model_res_partner"/>-->
+<!--        <field name="domain_force">[(1, '=', 1)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('hr_hospital2.group_manager'))]"/>-->
+<!--        <field name="perm_read" eval="1"/>-->
+<!--        <field name="perm_write" eval="0"/>-->
+<!--        <field name="perm_create" eval="0"/>-->
+<!--        <field name="perm_unlink" eval="0"/>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Адміністратор має повний доступ &ndash;&gt;-->
+<!--    <record id="res_partner_admin_rule" model="ir.rule">-->
+<!--        <field name="name">Admin: All Partners Full Access</field>-->
+<!--        <field name="model_id" ref="base.model_res_partner"/>-->
+<!--        <field name="domain_force">[(1, '=', 1)]</field>-->
+<!--        <field name="groups" eval="[(4, ref('hr_hospital2.group_admin'))]"/>-->
+<!--        <field name="perm_read" eval="1"/>-->
+<!--        <field name="perm_write" eval="1"/>-->
+<!--        <field name="perm_create" eval="1"/>-->
+<!--        <field name="perm_unlink" eval="1"/>-->
+<!--    </record>-->
+</odoo>
