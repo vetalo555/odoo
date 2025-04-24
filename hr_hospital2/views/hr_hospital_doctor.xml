@@ -96,6 +96,7 @@
         <menuitem id="view_doctor_menu"
                   action="view_doctor_window"
                   parent="menu_hr_hospital_doctors"
-                  name="Doctor" sequence="200"/>
+                  name="Doctor" sequence="200"
+                  groups="hr_hospital2.group_admin"/>
 
 </odoo>

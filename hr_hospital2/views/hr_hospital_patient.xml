@@ -80,5 +80,6 @@
         <menuitem id="view_patient_menu3"
                   action="view_patient_window3"
                   parent="menu_hr_hospital_patients"
-                  name="Patients" sequence="200"/>
+                  name="Patients" sequence="200"
+                  groups="hr_hospital2.group_admin"/>
 </odoo>

@@ -73,5 +73,6 @@
         <menuitem id="view_diagnosis_menu"
                   action="view_diagnosis_window"
                   parent="menu_hr_hospital_diagnosis"
-                  name="Diagnosis" sequence="200"/>
+                  name="Diagnosis" sequence="200"
+                  groups="hr_hospital2.group_admin"/>
 </odoo>

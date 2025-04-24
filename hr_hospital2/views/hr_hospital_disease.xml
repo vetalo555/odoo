@@ -57,5 +57,6 @@
         <menuitem id="view_disease_menu"
                   action="view_disease_window"
                   parent="menu_hr_hospital_disease"
-                  name="Disease" sequence="200"/>
+                  name="Disease" sequence="200"
+                  groups="hr_hospital2.group_admin"/>
 </odoo>
