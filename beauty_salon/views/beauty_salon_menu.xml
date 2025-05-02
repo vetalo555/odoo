@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+  <menuitem id="beauty_salon_menu_root"
+            name="Beauty Salon" sequence="100"/>
+
+  <menuitem id="menu_beauty_salon_masters"
+            parent="beauty_salon_menu_root"
+            name="Masters" sequence="200"/>
+
+  <menuitem id="menu_beauty_salon_clients"
+            parent="beauty_salon_menu_root"
+            name="Clients" sequence="300"/>
+
+  <menuitem id="menu_beauty_salon_services"
+            parent="beauty_salon_menu_root"
+            name="Services" sequence="400"/>
+
+  <menuitem id="menu_beauty_salon_appointment"
+            parent="beauty_salon_menu_root"
+            name="Appointment" sequence="400"/>
+
+  <menuitem id="menu_beauty_salon_appointment_line"
+            parent="beauty_salon_menu_root"
+            name="Appointment line" sequence="400"/>
+
+  <menuitem id="menu_beauty_salon_reminder"
+            parent="beauty_salon_menu_root"
+            name="Reminder" sequence="400"/>
+</odoo>

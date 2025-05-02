@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_beauty_service_tree" model="ir.ui.view">
+        <field name="name">beauty.service.tree</field>
+        <field name="model">beauty.service</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="list_price"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_beauty_service_form" model="ir.ui.view">
+        <field name="name">beauty.service.form</field>
+        <field name="model">beauty.service</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="list_price"/>
+                        <field name="duration"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_beauty_service_search" model="ir.ui.view">
+        <field name="name">beauty.service.search</field>
+        <field name="model">beauty.service</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_beauty_salon_service_window" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">beauty.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="action_beauty_salon_service_menu"
+              action="action_beauty_salon_service_window"
+              parent="menu_beauty_salon_services"
+              name="Services" sequence="200"/>
+</odoo>

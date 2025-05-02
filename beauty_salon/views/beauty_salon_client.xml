@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <!-- Client Form View -->
+  <record id="view_form_beauty_client" model="ir.ui.view">
+    <field name="name">beauty.client.form</field>
+    <field name="model">beauty.client</field>
+    <field name="arch" type="xml">
+      <form string="Client">
+        <sheet>
+          <group>
+            <field name="partner_id" invisible="1"/>
+            <field name="name"/>
+            <field name="client_id"/>
+            <field name="email"/>
+            <field name="phone"/>
+            <field name="date_of_birth"/>
+            <field name="loyalty_points"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids" widget="mail_thread"/>
+          <field name="activity_ids" widget="mail_activity"/>
+        </div>
+      </form>
+    </field>
+  </record>
+
+  <!-- Client Tree View -->
+  <record id="view_tree_beauty_client" model="ir.ui.view">
+    <field name="name">beauty.client.tree</field>
+    <field name="model">beauty.client</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="email"/>
+        <field name="phone"/>
+        <field name="loyalty_points"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Client Kanban View -->
+  <record id="view_kanban_beauty_client" model="ir.ui.view">
+    <field name="name">beauty.client.kanban</field>
+    <field name="model">beauty.client</field>
+    <field name="arch" type="xml">
+      <kanban>
+        <templates>
+          <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+              <strong>Name:</strong>
+              <div><field name="name"/></div>
+              <strong>Phone:</strong>
+              <div><field name="phone"/></div>
+              <strong>Email:</strong>
+              <div><field name="email"/></div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
+    </field>
+  </record>
+
+  <!-- Client Search View -->
+  <record id="view_search_beauty_client" model="ir.ui.view">
+    <field name="name">beauty.client.search</field>
+    <field name="model">beauty.client</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="email"/>
+        <field name="phone"/>
+      </search>
+    </field>
+  </record>
+
+    <record id="action_beauty_salon_client_window" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">beauty.client</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <menuitem id="action_beauty_salon_client_menu"
+              action="action_beauty_salon_client_window"
+              parent="menu_beauty_salon_clients"
+              name="Clients" sequence="200"/>
+
+</odoo>

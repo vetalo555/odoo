@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data for beauty.master -->
+    <record id="beauty_master_1" model="beauty.master">
+        <field name="name">Olena Stylist</field>
+        <field name="email">olena@example.com</field>
+        <field name="phone">+380631112233</field>
+    </record>
+    <record id="beauty_master_2" model="beauty.master">
+        <field name="name">Ihor Barber</field>
+        <field name="email">ihor@example.com</field>
+        <field name="phone">+380631112234</field>
+    </record>
+    <record id="beauty_master_3" model="beauty.master">
+        <field name="name">Anna Nailmaster</field>
+        <field name="email">anna@example.com</field>
+        <field name="phone">+380631112235</field>
+    </record>
+    <record id="beauty_master_4" model="beauty.master">
+        <field name="name">Serhii Barber</field>
+        <field name="email">serhii@example.com</field>
+        <field name="phone">+380631112236</field>
+    </record>
+    <record id="beauty_master_5" model="beauty.master">
+        <field name="name">Daria Makeup</field>
+        <field name="email">daria@example.com</field>
+        <field name="phone">+380631112237</field>
+    </record>
+
+    <!-- Demo data for beauty.client -->
+    <record id="beauty_client_1" model="beauty.client">
+        <field name="name">Olha Kozak</field>
+        <field name="email">olha@example.com</field>
+        <field name="phone">+380501234567</field>
+    </record>
+    <record id="beauty_client_2" model="beauty.client">
+        <field name="name">Taras Petrenko</field>
+        <field name="email">taras@example.com</field>
+        <field name="phone">+380502345678</field>
+    </record>
+    <record id="beauty_client_3" model="beauty.client">
+        <field name="name">Iryna Bondar</field>
+        <field name="email">iryna@example.com</field>
+        <field name="phone">+380503456789</field>
+    </record>
+    <record id="beauty_client_4" model="beauty.client">
+        <field name="name">Volodymyr Shevchenko</field>
+        <field name="email">volodymyr@example.com</field>
+        <field name="phone">+380504567890</field>
+    </record>
+    <record id="beauty_client_5" model="beauty.client">
+        <field name="name">Natalia Ivanova</field>
+        <field name="email">natalia@example.com</field>
+        <field name="phone">+380505678901</field>
+    </record>
+
+    <!-- Demo data for beauty.service -->
+    <record id="beauty_service_1" model="beauty.service">
+        <field name="name">Haircut</field>
+        <field name="list_price">500</field>
+        <field name="duration">1</field>
+    </record>
+    <record id="beauty_service_2" model="beauty.service">
+        <field name="name">Hair coloring</field>
+        <field name="list_price">1200</field>
+        <field name="duration">2</field>
+    </record>
+    <record id="beauty_service_3" model="beauty.service">
+        <field name="name">Manicure</field>
+        <field name="list_price">400</field>
+        <field name="duration">1</field>
+    </record>
+    <record id="beauty_service_4" model="beauty.service">
+        <field name="name">Makeup</field>
+        <field name="list_price">800</field>
+        <field name="duration">1.5</field>
+    </record>
+    <record id="beauty_service_5" model="beauty.service">
+        <field name="name">Pedicure</field>
+        <field name="list_price">600</field>
+        <field name="duration">1.2</field>
+    </record>
+</odoo>
