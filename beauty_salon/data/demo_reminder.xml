@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="beauty_reminder_1" model="beauty.reminder">
+        <field name="client_id" ref="beauty_client_1"/>
+        <field name="service_id" ref="beauty_service_1"/>
+        <field name="next_date">2025-05-05</field>
+        <field name="note">Time for your next haircut!</field>
+        <field name="sent">False</field>
+    </record>
+
+    <record id="beauty_reminder_2" model="beauty.reminder">
+        <field name="client_id" ref="beauty_client_2"/>
+        <field name="service_id" ref="beauty_service_2"/>
+        <field name="next_date">2025-05-06</field>
+        <field name="note">Don't forget your manicure appointment.</field>
+        <field name="sent">True</field>
+    </record>
+
+    <record id="beauty_reminder_3" model="beauty.reminder">
+        <field name="client_id" ref="beauty_client_3"/>
+        <field name="service_id" ref="beauty_service_3"/>
+        <field name="next_date">2025-05-07</field>
+        <field name="note">A gentle reminder for your facial session.</field>
+        <field name="sent">False</field>
+    </record>
+
+    <record id="beauty_reminder_4" model="beauty.reminder">
+        <field name="client_id" ref="beauty_client_4"/>
+        <field name="service_id" ref="beauty_service_4"/>
+        <field name="next_date">2025-05-08</field>
+        <field name="note">Hair coloring is due this week!</field>
+        <field name="sent">True</field>
+    </record>
+
+    <record id="beauty_reminder_5" model="beauty.reminder">
+        <field name="client_id" ref="beauty_client_5"/>
+        <field name="service_id" ref="beauty_service_5"/>
+        <field name="next_date">2025-05-09</field>
+        <field name="note">Come back for your relaxing massage.</field>
+        <field name="sent">False</field>
+    </record>
+</odoo>

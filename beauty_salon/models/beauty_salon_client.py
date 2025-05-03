@@ -10,9 +10,9 @@ class Client(models.Model):
     partner_id = fields.Many2one('res.partner', string="Related Partner", required=True, ondelete='cascade')
     date_of_birth = fields.Date(string="Date of Birth", tracking=True)
     loyalty_points = fields.Integer(string="Loyalty Points", default=0, tracking=True)
-    client_id = fields.Many2one(
-        comodel_name='res.partner',
-        string='Client',
-        required=True,
-        tracking=True,
-    )
+    # client_id = fields.Many2one(
+    #     comodel_name='res.partner',
+    #     string='Client',
+    #     required=True,
+    #     tracking=True,
+    # )

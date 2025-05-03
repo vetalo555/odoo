@@ -11,7 +11,7 @@
           <group>
             <field name="partner_id" invisible="1"/>
             <field name="name"/>
-            <field name="client_id"/>
+<!--            <field name="client_id"/>-->
             <field name="email"/>
             <field name="phone"/>
             <field name="date_of_birth"/>

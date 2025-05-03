@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Запис 1 -->
+    <record id="beauty_appointment_1" model="beauty.appointment">
+        <field name="name">APT-001</field>
+        <field name="appointment_date">2025-05-03 10:00:00</field>
+        <field name="client_id" ref="beauty_client_1"/>
+        <field name="master_id" ref="beauty_master_1"/>
+        <field name="state">planning</field>
+    </record>
+    <record id="beauty_appointment_line_1" model="beauty.appointment.line">
+        <field name="appointment_id" ref="beauty_appointment_1"/>
+        <field name="service_id" ref="beauty_service_1"/>
+        <field name="qty">1</field>
+    </record>
+
+    <!-- Запис 2 -->
+    <record id="beauty_appointment_2" model="beauty.appointment">
+        <field name="name">APT-002</field>
+        <field name="appointment_date">2025-05-03 12:00:00</field>
+        <field name="client_id" ref="beauty_client_2"/>
+        <field name="master_id" ref="beauty_master_2"/>
+        <field name="state">finished</field>
+    </record>
+    <record id="beauty_appointment_line_2" model="beauty.appointment.line">
+        <field name="appointment_id" ref="beauty_appointment_2"/>
+        <field name="service_id" ref="beauty_service_2"/>
+        <field name="qty">2</field>
+    </record>
+
+    <!-- Запис 3 -->
+    <record id="beauty_appointment_3" model="beauty.appointment">
+        <field name="name">APT-003</field>
+        <field name="appointment_date">2025-05-04 14:00:00</field>
+        <field name="client_id" ref="beauty_client_3"/>
+        <field name="master_id" ref="beauty_master_3"/>
+        <field name="state">planning</field>
+    </record>
+    <record id="beauty_appointment_line_3" model="beauty.appointment.line">
+        <field name="appointment_id" ref="beauty_appointment_3"/>
+        <field name="service_id" ref="beauty_service_3"/>
+        <field name="qty">1</field>
+    </record>
+
+    <!-- Запис 4 -->
+    <record id="beauty_appointment_4" model="beauty.appointment">
+        <field name="name">APT-004</field>
+        <field name="appointment_date">2025-05-05 09:30:00</field>
+        <field name="client_id" ref="beauty_client_4"/>
+        <field name="master_id" ref="beauty_master_4"/>
+        <field name="state">planning</field>
+    </record>
+    <record id="beauty_appointment_line_4" model="beauty.appointment.line">
+        <field name="appointment_id" ref="beauty_appointment_4"/>
+        <field name="service_id" ref="beauty_service_1"/>
+        <field name="qty">1</field>
+    </record>
+
+    <!-- Запис 5 -->
+    <record id="beauty_appointment_5" model="beauty.appointment">
+        <field name="name">APT-005</field>
+        <field name="appointment_date">2025-05-06 16:00:00</field>
+        <field name="client_id" ref="beauty_client_5"/>
+        <field name="master_id" ref="beauty_master_5"/>
+        <field name="state">planning</field>
+    </record>
+    <record id="beauty_appointment_line_5" model="beauty.appointment.line">
+        <field name="appointment_id" ref="beauty_appointment_5"/>
+        <field name="service_id" ref="beauty_service_2"/>
+        <field name="qty">1</field>
+    </record>
+</odoo>

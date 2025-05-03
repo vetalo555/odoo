@@ -53,7 +53,9 @@ Main features:
         # 'report/master_workload_report_template.xml',
     ],
     'demo': [
-        # 'data/beauty_salon_demo.xml',
+        'data/demo_master_client_service.xml',
+        'data/demo_appoitment.xml',
+        'data/demo_reminder.xml',
     ],
     'images': [
         # 'static/description/banner.png',

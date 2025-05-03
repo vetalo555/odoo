@@ -21,10 +21,29 @@ class BeautyAppointment(models.Model):
     #     if vals.get('name', 'New') == 'New':
     #         vals['name'] = self.env['ir.sequence'].next_by_code('beauty.appointment') or 'New'
     #     return super().create(vals)
+    # @api.model
+    # def create(self, vals):
+    #     # Перевіряємо, чи поле name ще не задано
+    #     if not vals.get('name'):
+    #         # Отримуємо наступне значення з послідовності
+    #         vals['name'] = self.env['ir.sequence'].next_by_code('beauty.appointment') or 'New'
+    #     return super(BeautyAppointment, self).create(vals)
+
     @api.model
     def create(self, vals):
-        # Перевіряємо, чи поле name ще не задано
         if not vals.get('name'):
-            # Отримуємо наступне значення з послідовності
             vals['name'] = self.env['ir.sequence'].next_by_code('beauty.appointment') or 'New'
-        return super(BeautyAppointment, self).create(vals)
+        appointment = super().create(vals)
+
+        # Якщо створений запис має статус "planning", створюємо нагадування
+        if appointment.state == 'planning' and appointment.line_ids:
+            for line in appointment.line_ids:
+                self.env['beauty.reminder'].create({
+                    'client_id': appointment.client_id.id,
+                    'service_id': line.service_id.id,
+                    'next_date': appointment.appointment_date,
+                    'note': 'Автоматичне нагадування про заплановану послугу.',
+                    'sent': False,
+                })
+
+        return appointment
