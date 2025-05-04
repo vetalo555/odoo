@@ -5,3 +5,5 @@ access_beauty_service_admin,beauty.service.admin,model_beauty_service,base.group
 access_beauty_appointment_admin,beauty.appointment.admin,model_beauty_appointment,base.group_user,1,1,1,1
 access_beauty_appointment_line_admin,beauty.appointment.line.admin,model_beauty_appointment_line,base.group_user,1,1,1,1
 access_beauty_reminder_admin,beauty.reminder.admin,model_beauty_reminder,base.group_user,1,1,1,1
+access_beauty_set_master_wizard,beauty.set.master.wizard,model_set_master_wizard,base.group_user,1,1,1,1
+

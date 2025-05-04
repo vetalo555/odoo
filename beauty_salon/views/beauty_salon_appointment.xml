@@ -22,10 +22,14 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="appointment_date"/>
-                        <field name="client_id"/>
-                        <field name="master_id"/>
-                        <field name="state"/>
+                        <group>
+                            <field name="appointment_date"/>
+                            <field name="client_id"/>
+                            <field name="master_id"/>
+                        </group>
+                        <group>
+                            <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                        </group>
                     </group>
                     <notebook>
                         <page string="Services">
@@ -33,6 +37,7 @@
                                 <tree editable="bottom">
                                     <field name="service_id"/>
                                     <field name="qty"/>
+                                    <field name="discount"/>
                                     <field name="price"/>
                                     <field name="total_price"/>
                                     <field name="duration"/>
@@ -49,7 +54,11 @@
         <field name="name">beauty.appointment.calendar</field>
         <field name="model">beauty.appointment</field>
         <field name="arch" type="xml">
-            <calendar date_start="appointment_date" string="Appointments">
+            <calendar string="Appointments Calendar"
+                      date_start="appointment_date"
+                      color="master_id"
+                      event_open_popup="true">
+                <field name="name"/>
                 <field name="client_id"/>
                 <field name="master_id"/>
             </calendar>
@@ -64,9 +73,14 @@
                 <field name="name"/>
                 <field name="client_id"/>
                 <field name="master_id"/>
+<!--                <searchpanel>-->
+<!--                    <field name="master_id" string="Masters" icon="fa-user-md"-->
+<!--                           select="multi" enable_counters="1"/>-->
+<!--                </searchpanel>-->
             </search>
         </field>
     </record>
+
 
     <record id="action_beauty_salon_appointment_window" model="ir.actions.act_window">
         <field name="name">Appointment</field>

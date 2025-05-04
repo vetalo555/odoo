@@ -9,8 +9,9 @@
             <tree>
                 <field name="appointment_id"/>
                 <field name="service_id"/>
-                <field name="total_price"/>
-                <field name="duration"/>
+                <field name="discount"/>
+                <field name="total_price" widget="float_sum" sum="Total"/>
+                <field name="duration" widget="float_sum" sum="Total"/>
             </tree>
         </field>
     </record>
@@ -45,20 +46,26 @@
             <search>
                 <field name="appointment_id"/>
                 <field name="service_id"/>
+                <searchpanel>
+                    <field name="appointment_state" string="Filter" hierarchize="1" select="one"
+                           enable_counters="1"/>
+                    <field name="client_id" string="Filter" hierarchize="1" select="one"
+                           enable_counters="1"/>
+                </searchpanel>
             </search>
         </field>
     </record>
 
-    <record id="action_beauty_salon_appointment_line_window" model="ir.actions.act_window">
-        <field name="name">Appointment line</field>
+    <record id="action_beauty_salon_appointment_line_window2" model="ir.actions.act_window">
+        <field name="name">Reports</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">beauty.appointment.line</field>
         <field name="view_mode">tree,pivot,graph</field>
-        <field name="domain">[('appointment_id.state', '=', 'finished')]</field>
+<!--        <field name="domain">[('appointment_id.state', '=', 'finished')]</field>-->
     </record>
 
     <menuitem id="action_beauty_salon_appointment_line_menu"
-              action="action_beauty_salon_appointment_line_window"
+              action="action_beauty_salon_appointment_line_window2"
               parent="menu_beauty_salon_appointment_line"
-              name="Appointment line" sequence="200"/>
+              name="Reports" sequence="200"/>
 </odoo>

@@ -9,14 +9,31 @@
       <form string="Client">
         <sheet>
           <group>
-            <field name="partner_id" invisible="1"/>
+            <group>
+            <field name="partner_id"/>
             <field name="name"/>
-<!--            <field name="client_id"/>-->
             <field name="email"/>
             <field name="phone"/>
             <field name="date_of_birth"/>
-            <field name="loyalty_points"/>
+            <field name="discount"/>
+            </group>
+            <group>
+              <field name="image_512" widget='image' class="oe_avatar m-0"
+                     options='{"zoom": true, "preview_image":"avatar_256"}'/>
+            </group>
           </group>
+          <notebook>
+                <page string="Appointment History">
+                    <field name="appointment_history_ids">
+                        <tree>
+                          <field name="service_ids" widget="many2many_tags"/>
+                          <field name="state" readonly="1"/>
+                          <field name="master_id"/>
+                          <field name="appointment_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
         </sheet>
         <div class="oe_chatter">
           <field name="message_follower_ids"/>
@@ -36,7 +53,9 @@
         <field name="name"/>
         <field name="email"/>
         <field name="phone"/>
-        <field name="loyalty_points"/>
+        <field name="master_ids" widget="many2many_tags"/>
+        <field name="discount"/>
+         <field name="visit_count"/>
       </tree>
     </field>
   </record>
@@ -48,14 +67,27 @@
     <field name="arch" type="xml">
       <kanban>
         <templates>
+          <t t-name="kanban-menu">
+            <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+            <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+<!--                       <ul class="oe_kanban_colorpicker" data-field="name"/>-->
+          </t>
           <t t-name="kanban-box">
-            <div class="oe_kanban_global_click">
-              <strong>Name:</strong>
-              <div><field name="name"/></div>
-              <strong>Phone:</strong>
-              <div><field name="phone"/></div>
-              <strong>Email:</strong>
-              <div><field name="email"/></div>
+            <div class="oe_kanban_content d-flex justify-content-between">
+              <div class="oe_kanban_details flex-grow-1">
+                <strong>Name:</strong>
+                <div><field name="name"/></div>
+                <strong>Phone:</strong>
+                <div><field name="phone"/></div>
+                <strong>Email:</strong>
+                <div><field name="email"/></div>
+                <button name="action_create_appointment" string="Create Appointment" type="object" class="oe_highlight"/>
+
+              </div>
+              <div class="o_kanban_image_right">
+                <img t-att-src="kanban_image('beauty.master', 'image_128', record.id.raw_value)"
+                     class="o_kanban_image o_image_64_cover" alt="Master Image"/>
+              </div>
             </div>
           </t>
         </templates>

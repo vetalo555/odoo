@@ -23,7 +23,7 @@
 
   <menuitem id="menu_beauty_salon_appointment_line"
             parent="beauty_salon_menu_root"
-            name="Appointment line" sequence="400"/>
+            name="Reports" sequence="400"/>
 
   <menuitem id="menu_beauty_salon_reminder"
             parent="beauty_salon_menu_root"

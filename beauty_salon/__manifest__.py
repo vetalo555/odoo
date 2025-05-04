@@ -44,6 +44,7 @@ Main features:
         'views/beauty_salon_appointment.xml',
         'views/beauty_salon_appointment_line.xml',
         'views/beauty_salon_reminder.xml',
+        'wizard/beauty_salon_set_master.xml'
 
         #
         # # Wizards
