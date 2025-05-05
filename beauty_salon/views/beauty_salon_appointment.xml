@@ -73,10 +73,10 @@
                 <field name="name"/>
                 <field name="client_id"/>
                 <field name="master_id"/>
-<!--                <searchpanel>-->
-<!--                    <field name="master_id" string="Masters" icon="fa-user-md"-->
-<!--                           select="multi" enable_counters="1"/>-->
-<!--                </searchpanel>-->
+                <searchpanel>
+                    <field name="master_id" string="Masters" icon="fa-user-md"
+                           select="multi" enable_counters="1"/>
+                </searchpanel>
             </search>
         </field>
     </record>

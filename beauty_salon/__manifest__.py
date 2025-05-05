@@ -38,13 +38,14 @@ Main features:
         #
         # # Views
         'views/beauty_salon_menu.xml',
+        'wizard/beauty_salon_set_master.xml',
+
         'views/beauty_salon_master.xml',
         'views/beauty_salon_client.xml',
         'views/beauty_salon_service.xml',
         'views/beauty_salon_appointment.xml',
         'views/beauty_salon_appointment_line.xml',
         'views/beauty_salon_reminder.xml',
-        'wizard/beauty_salon_set_master.xml'
 
         #
         # # Wizards

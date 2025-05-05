@@ -20,13 +20,6 @@ class Client(models.Model):
         string='Appointment History',
         readonly = True
     )
-    master_ids = fields.Many2many(
-        comodel_name='beauty.master',
-        string='Personal Masters',
-        relation='beauty_client_master_rel',
-        column1='client_id',
-        column2='master_id',
-    )
 
     @api.depends('appointment_ids.state')
     def _compute_visit_count(self):
