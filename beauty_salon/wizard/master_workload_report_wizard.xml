@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_master_workload_report_wizard" model="ir.ui.view">
+        <field name="name">master.workload.report.wizard.form</field>
+        <field name="model">master.workload.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Master Workload Report">
+                <group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="master_ids" widget="many2many_tags"/>
+                        <field name="state" widget="selection_badge"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_generate_report" string="Generate Report" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_master_workload_report_wizard" model="ir.actions.act_window">
+        <field name="name">Master Workload Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">master.workload.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

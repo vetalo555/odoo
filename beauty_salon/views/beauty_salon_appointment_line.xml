@@ -68,4 +68,23 @@
               action="action_beauty_salon_appointment_line_window2"
               parent="menu_beauty_salon_appointment_line"
               name="Reports" sequence="200"/>
+
+    <record id="action_appointment_workload_report" model="ir.actions.act_window">
+        <field name="name">Master Workload Report</field>
+        <field name="res_model">master.workload.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_beauty_appointment_line"/>
+        <field name="binding_type">action</field>
+    </record>
+
 </odoo>
+
+<!--<record id="action_appointment_workload_report" model="ir.actions.act_window">-->
+<!--    <field name="name">Master Workload Report</field>-->
+<!--    <field name="res_model">master.workload.report.wizard</field>-->
+<!--    <field name="view_mode">form</field>-->
+<!--    <field name="target">new</field>-->
+<!--    <field name="binding_model_id" ref="model_beauty_appointment_line"/>-->
+<!--    <field name="binding_type">action</field>-->
+<!--</record>-->

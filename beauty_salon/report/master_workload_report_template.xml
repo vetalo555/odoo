@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Власний формат паперу -->
+    <record id="paperformat_master_workload" model="report.paperformat">
+        <field name="name">Master Workload A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">28</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+     <!-- Налаштування звіту -->
+    <record id="action_master_workload_report" model="ir.actions.report">
+        <field name="name">Master Workload Report</field>
+        <field name="model">master.workload.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">beauty_salon.master_workload_report</field>
+        <field name="report_file">beauty_salon.master_workload_report</field>
+        <field name="binding_model_id" ref="model_master_workload_report_wizard"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_master_workload"/>
+    </record>
+
+        <!-- Шаблон звіту -->
+    <template id="master_workload_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="master_data">
+                    <div class="page">
+                        <!-- Company Logo -->
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 100px;" alt="Logo"/>
+                            </div>
+                        </div>
+
+                        <!-- Master Info Header -->
+                        <div class="row mt32 mb32">
+                            <div class="col-12 text-center">
+                                <h2 style="text-transform: uppercase; font-weight: bold;">
+                                    <span t-esc="master_data['master'].name"/>
+                                </h2>
+                                <h3 style="text-transform: uppercase; font-weight: bold;">
+                                    <span t-esc="master_data['master'].specialization or 'Not Specified'"/>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Period Info -->
+                        <div class="row mb32">
+                            <div class="col-12">
+                                <strong>Period: </strong>
+                                <span t-esc="date_from"/> - <span t-esc="date_to"/>
+                            </div>
+                        </div>
+
+                        <!-- Workload Table -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Number of Appointments</th>
+                                    <th>Total Service Time (hours)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="master_data['dates']" t-as="date">
+                                    <tr>
+                                        <td><span t-esc="date['date']"/></td>
+                                        <td class="text-center"><span t-esc="date['count']"/></td>
+                                        <td class="text-center"><span t-esc="date['hours']"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-center">
+                                        <strong><t t-esc="master_data['total_count']"/></strong>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong><t t-esc="master_data['total_hours']"/></strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Report Generation Time -->
+                        <div class="row">
+                            <div class="col-12 text-right" style="font-size: 0.8em;">
+                                <p>Report generated on: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/></p>
+                            </div>
+                        </div>
+
+                        <p style="page-break-after: always;"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

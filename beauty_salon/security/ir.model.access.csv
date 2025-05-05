@@ -6,4 +6,5 @@ access_beauty_appointment_admin,beauty.appointment.admin,model_beauty_appointmen
 access_beauty_appointment_line_admin,beauty.appointment.line.admin,model_beauty_appointment_line,base.group_user,1,1,1,1
 access_beauty_reminder_admin,beauty.reminder.admin,model_beauty_reminder,base.group_user,1,1,1,1
 access_beauty_change_master_wizard,beauty.change.master.wizard,model_change_master_wizard,base.group_user,1,1,1,1
+access_beauty_master_workload_report_wizard,beauty.master.workload.report.wizard,model_master_workload_report_wizard,base.group_user,1,1,1,1
 
