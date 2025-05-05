@@ -44,6 +44,6 @@ class ChangeMasterWizard(models.TransientModel):
     def apply_change(self):
         self.ensure_one()
         if self.appointment_ids.state != 'planning':
-            raise UserError(_("No appointments selected."))
+            raise UserError(_("You can't change Master in finished or cancelled appointments."))
         for appointment in self.appointment_ids:
             appointment.master_id = self.new_master_id

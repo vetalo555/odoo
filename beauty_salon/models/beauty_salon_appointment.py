@@ -1,4 +1,6 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
+from odoo.tools.translate import _
 
 class BeautyAppointment(models.Model):
     _name = 'beauty.appointment'
@@ -15,6 +17,7 @@ class BeautyAppointment(models.Model):
         ('finished', 'Finished'),
         ('cancelled', 'Cancelled')
     ], string='Status', required=True, tracking=True)
+    # For appoinment history in client view
     service_ids = fields.Many2many('beauty.service', compute="_compute_services")
 
     @api.depends('line_ids.service_id')
@@ -37,6 +40,7 @@ class BeautyAppointment(models.Model):
                     'next_date': appointment.appointment_date,
                     'note': 'Автоматичне нагадування про заплановану послугу.',
                     'sent': False,
+
                 })
 
         return appointment
@@ -48,46 +52,6 @@ class BeautyAppointment(models.Model):
             reminders = self.env['beauty.reminder'].search([('client_id', '=', self.client_id.id)])
             reminders.write({'active': False})  # Деактивація записів
 
-    # def write(self, vals):
-    #     """Оновлює дані в beauty.reminder при зміні запису в beauty.appointment, включаючи line_ids"""
-    #     result = super().write(vals)
-    #
-    #     for record in self:
-    #         reminders = self.env['beauty.reminder'].search([('client_id', '=', record.client_id.id)])
-    #
-    #         # Якщо змінено `line_ids`, оновлюємо нагадування
-    #         if 'line_ids' in vals:
-    #             new_services = record.line_ids.mapped('service_id.id')
-    #
-    #             # Видалення нагадувань, якщо послуги більше не існують
-    #             reminders_to_delete = reminders.filtered(lambda r: r.service_id.id not in new_services)
-    #             if reminders_to_delete:
-    #                 reminders_to_delete.unlink()
-    #
-    #             # Додавання нових нагадувань
-    #             existing_services = reminders.mapped('service_id.id')
-    #             for line in record.line_ids:
-    #                 if line.service_id.id not in existing_services:
-    #                     self.env['beauty.reminder'].create({
-    #                         'client_id': record.client_id.id,
-    #                         'service_id': line.service_id.id,
-    #                         'next_date': record.appointment_date,
-    #                         'note': 'Автоматичне нагадування про оновлену послугу.',
-    #                         'sent': False,
-    #                     })
-    #
-    #         # Оновлення існуючих нагадувань, якщо змінено загальні дані
-    #         if reminders:
-    #             update_vals = {}
-    #             for field in vals:
-    #                 if field in reminders._fields:
-    #                     update_vals[field] = vals[field]
-    #
-    #             if update_vals:
-    #                 reminders.write(update_vals)
-    #
-    #     return result
-
     def unlink(self):
         """Видаляє відповідні записи в beauty.reminder, коли видаляється beauty.appointment"""
         for record in self:
@@ -96,10 +60,42 @@ class BeautyAppointment(models.Model):
                 reminders.unlink()  # Видалення пов'язаних нагадувань
         return super().unlink()
 
-    # def write(self, vals):
-    #     res = super().write(vals)
-    #     if 'state' in vals and vals['state'] == 'finished':
-    #         for appointment in self:
-    #             appointment.client_id._compute_visit_count()
-    #             appointment.client_id._compute_discount()
-    #     return res
+    @api.constrains('master_id', 'client_id', 'appointment_date')
+    def _check_appointment_constraints(self):
+        for rec in self:
+            if not rec.master_id.is_available:
+                raise ValidationError(_("Cannot assign an inactive master."))
+
+            # Перевірка: той самий майстер уже має запис на цю дату і час
+            duplicates = self.search([
+                ('id', '!=', rec.id),
+                ('master_id', '=', rec.master_id.id),
+                ('appointment_date', '=', rec.appointment_date),
+                ('state', '!=', 'cancelled')  # Виправлено "canceled" на "cancelled"
+            ])
+            if duplicates:
+                raise ValidationError(_("This master already has an appointment at this date and time."))
+
+            # Перевірка: клієнт уже записаний на той самий час
+            client_conflicts = self.search([
+                ('id', '!=', rec.id),
+                ('client_id', '=', rec.client_id.id),
+                ('appointment_date', '=', rec.appointment_date),
+                ('state', '!=', 'cancelled')  # Виправлено "canceled" на "cancelled"
+            ])
+            if client_conflicts:
+                raise ValidationError(_("This client already has an appointment at this date and time."))
+
+    def write(self, vals):
+        # Перевірка, чи запис не має статусу 'finished' або 'cancelled'
+        for rec in self:
+            if rec.state in ['finished', 'cancelled']:
+                # Дозволяємо змінювати тільки поле state, якщо запис вже має статус 'finished' або 'cancelled'
+                if vals and (len(vals) > 1 or 'state' not in vals):
+                    raise ValidationError(
+                        _("Cannot modify an appointment that is marked as 'Finished' or 'Cancelled'."))
+        return super().write(vals)
+
+
+
+
