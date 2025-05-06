@@ -2,6 +2,10 @@ from odoo import models, fields
 
 
 class Master(models.Model):
+    """
+       Represents a beauty salon master.
+       Manages master information, availability, and specialization.
+       """
     _name = 'beauty.master'
     _description = 'Beauty Salon Master'
     _inherits = {'res.partner': 'partner_id'}

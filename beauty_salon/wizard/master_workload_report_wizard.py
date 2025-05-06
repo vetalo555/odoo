@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-from datetime import datetime
+
 
 class MasterWorkloadReportWizard(models.TransientModel):
     _name = 'master.workload.report.wizard'
@@ -20,7 +20,7 @@ class MasterWorkloadReportWizard(models.TransientModel):
             self.date_to = self.date_from
 
     def action_generate_report(self):
-        # Якщо майстри не вибрані, беремо всіх
+        #Якщо майстри не вибрані, беремо всіх
         if not self.master_ids:
             self.master_ids = self.env['beauty.master'].search([])
 

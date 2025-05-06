@@ -18,4 +18,3 @@ class TestBeautyClient(common.TransactionCase):
         })
         self.assertEqual(client.name, 'Test Client')
         self.assertEqual(client.date_of_birth, '1990-01-01')
-

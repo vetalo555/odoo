@@ -3,6 +3,10 @@ from odoo.exceptions import ValidationError
 from odoo.tools.translate import _
 
 class BeautyAppointment(models.Model):
+    """
+        Represents a beauty salon appointment.
+        Manages client bookings, master assignments, and service scheduling.
+        """
     _name = 'beauty.appointment'
     _description = 'Appointment'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -20,83 +24,25 @@ class BeautyAppointment(models.Model):
     # For appoinment history in client view
     service_ids = fields.Many2many('beauty.service', compute="_compute_services")
 
+
     @api.depends('line_ids.service_id')
     def _compute_services(self):
+        """
+                    Computes the list of services for this appointment.
+                    This is used to display the appointment history in the client view.
+                    """
         for record in self:
             record.service_ids = record.line_ids.mapped('service_id')
 
-    # @api.model
-    # def create(self, vals):
-    #     if not vals.get('name'):
-    #         vals['name'] = self.env['ir.sequence'].next_by_code('beauty.appointment') or 'New'
-    #     appointment = super().create(vals)
-    #
-    #     # Якщо створений запис має статус "planning", створюємо нагадування
-    #     if appointment.state == 'planning' and appointment.line_ids:
-    #         for line in appointment.line_ids:
-    #             self.env['beauty.reminder'].create({
-    #                 'client_id': appointment.client_id.id,
-    #                 'service_id': line.service_id.id,
-    #                 'next_date': appointment.appointment_date,
-    #                 'note': 'Автоматичне нагадування про заплановану послугу.',
-    #                 'sent': False,
-    #
-    #             })
-    #
-    #     return appointment
-    #
-    # @api.onchange('state')
-    # def _deactivate_reminders(self):
-    #     """Автоматично деактивує нагадування, якщо статус змінюється з 'planning'"""
-    #     if self.state != 'planning':
-    #         reminders = self.env['beauty.reminder'].search([('client_id', '=', self.client_id.id)])
-    #         reminders.write({'active': False})  # Деактивація записів
-    #
-    # def unlink(self):
-    #     """Видаляє відповідні записи в beauty.reminder, коли видаляється beauty.appointment"""
-    #     for record in self:
-    #         reminders = self.env['beauty.reminder'].search([('client_id', '=', record.client_id.id)])
-    #         if reminders:
-    #             reminders.unlink()  # Видалення пов'язаних нагадувань
-    #     return super().unlink()
-    #
-    # @api.constrains('master_id', 'client_id', 'appointment_date')
-    # def _check_appointment_constraints(self):
-    #     for rec in self:
-    #         if not rec.master_id.is_available:
-    #             raise ValidationError(_("Cannot assign an inactive master."))
-    #
-    #         # Перевірка: той самий майстер уже має запис на цю дату і час
-    #         duplicates = self.search([
-    #             ('id', '!=', rec.id),
-    #             ('master_id', '=', rec.master_id.id),
-    #             ('appointment_date', '=', rec.appointment_date),
-    #             ('state', '!=', 'cancelled')  # Виправлено "canceled" на "cancelled"
-    #         ])
-    #         if duplicates:
-    #             raise ValidationError(_("This master already has an appointment at this date and time."))
-    #
-    #         # Перевірка: клієнт уже записаний на той самий час
-    #         client_conflicts = self.search([
-    #             ('id', '!=', rec.id),
-    #             ('client_id', '=', rec.client_id.id),
-    #             ('appointment_date', '=', rec.appointment_date),
-    #             ('state', '!=', 'cancelled')  # Виправлено "canceled" на "cancelled"
-    #         ])
-    #         if client_conflicts:
-    #             raise ValidationError(_("This client already has an appointment at this date and time."))
-    #
-    # def write(self, vals):
-    #     # Перевірка, чи запис не має статусу 'finished' або 'cancelled'
-    #     for rec in self:
-    #         if rec.state in ['finished', 'cancelled']:
-    #             # Дозволяємо змінювати тільки поле state, якщо запис вже має статус 'finished' або 'cancelled'
-    #             if vals and (len(vals) > 1 or 'state' not in vals):
-    #                 raise ValidationError(
-    #                     _("Cannot modify an appointment that is marked as 'Finished' or 'Cancelled'."))
-    #     return super().write(vals)
     @api.model
     def create(self, vals):
+        """
+                Creates a new appointment record.
+                Automatically generates a unique reference number and creates reminders for planning appointments.
+
+                :param vals: Dictionary of field values
+                :return: Created appointment record
+                """
         if not vals.get('name'):
             # Отримуємо наступний номер
             sequence = self.env['ir.sequence'].search([('code', '=', 'beauty.appointment')], limit=1)
@@ -156,7 +102,7 @@ class BeautyAppointment(models.Model):
         return super().unlink()
 
     def write(self, vals):
-        # Перевірка, чи запис не має статусу 'finished' або 'cancelled'
+        """Перевірка, чи запис не має статусу 'finished' або 'cancelled'"""
         for rec in self:
             if rec.state in ['finished', 'cancelled']:
                 # Дозволяємо змінювати тільки поле state, якщо запис вже має статус 'finished' або 'cancelled'
@@ -179,6 +125,12 @@ class BeautyAppointment(models.Model):
 
     @api.constrains('master_id', 'client_id', 'appointment_date')
     def _check_appointment_constraints(self):
+        """
+                Validates appointment constraints:
+                - Checks if master is available
+                - Prevents double booking of masters
+                - Prevents double booking of clients
+                """
         for rec in self:
             if not rec.master_id.is_available:
                 raise ValidationError(_("Cannot assign an inactive master."))

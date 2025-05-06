@@ -1,6 +1,10 @@
 from odoo import api, fields, models
 
 class BeautyAppointmentLine(models.Model):
+    """
+        Represents a line item in a beauty salon appointment.
+        Manages services, pricing, and discounts for each appointment.
+        """
     _name = 'beauty.appointment.line'
     _description = 'Appointment Line'
 
@@ -32,17 +36,31 @@ class BeautyAppointmentLine(models.Model):
     #Filters and group by date in view
     @api.model
     def _get_dates(self):
+        """
+               Returns a list of unique dates from all appointments.
+               Used for filtering and grouping appointments by date.
+               """
         dates = self.env['beauty.appointment'].search([]).mapped('appointment_date')
         return sorted(set(d.date() for d in dates if d))
 
     #Filters and group by date in view
     @api.depends('appointment_id.appointment_date')
     def _compute_date_filter(self):
+        """
+                Computes the date filter for the appointment line.
+                Used for filtering and grouping appointments by date.
+                """
         for record in self:
             record.date_filter = str(record.appointment_id.appointment_date.date()) if record.appointment_id else False
 
     @api.depends('appointment_id.client_id', 'appointment_id.state')
     def _compute_discount(self):
+        """
+               Calculates the discount for the appointment line based on:
+               - Client's loyalty discount
+               - Appointment state
+               - Service pricing
+               """
         for line in self:
             client = line.appointment_id.client_id
             appointment = line.appointment_id
@@ -69,4 +87,3 @@ class BeautyAppointmentLine(models.Model):
         for line in self:
             discount_multiplier = (100 - line.discount) / 100
             line.total_price = line.price * line.qty * discount_multiplier
-

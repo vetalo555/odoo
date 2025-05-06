@@ -53,9 +53,79 @@ msgid "Status"
 msgstr "Статус"
 
 #. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment__service_ids
-msgid "Services"
-msgstr "Послуги"
+#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_appointment__state__planning
+msgid "Planning"
+msgstr "Планування"
+
+#. module: beauty_salon
+#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_appointment__state__finished
+msgid "Finished"
+msgstr "Виконано"
+
+#. module: beauty_salon
+#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_appointment__state__cancelled
+msgid "Cancelled"
+msgstr "Скасовано"
+
+#. module: beauty_salon
+#: model:ir.model,name:beauty_salon.model_beauty_appointment_line
+msgid "Appointment Line"
+msgstr "Строка запису"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__appointment_id
+msgid "Appointment"
+msgstr "Запис"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__service_id
+msgid "Service"
+msgstr "Послуга"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__price
+msgid "Price"
+msgstr "Ціна"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__duration
+msgid "Duration"
+msgstr "Тривалість"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__qty
+msgid "Quantity"
+msgstr "Кількість"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__discount
+msgid "Discount (%)"
+msgstr "Знижка (%)"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__total_price
+msgid "Total Price"
+msgstr "Загальна вартість"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__appointment_state
+msgid "Status"
+msgstr "Статус"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__client_id
+msgid "Client"
+msgstr "Клієнт"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__date_filter
+msgid "Filter by Day"
+msgstr "Фільтр за днем"
+
+#. module: beauty_salon
+#: model:ir.model,name:beauty_salon.model_beauty_client
+msgid "Beauty Salon Client"
+msgstr "Клієнт салону краси"
 
 #. module: beauty_salon
 #: model:ir.model.fields,field_description:beauty_salon.field_beauty_client__partner_id
@@ -81,6 +151,11 @@ msgstr "Всі візити"
 #: model:ir.model.fields,field_description:beauty_salon.field_beauty_client__appointment_history_ids
 msgid "Appointment History"
 msgstr "Історія записів"
+
+#. module: beauty_salon
+#: model:ir.model,name:beauty_salon.model_beauty_master
+msgid "Beauty Salon Master"
+msgstr "Майстер салону краси"
 
 #. module: beauty_salon
 #: model:ir.model.fields,field_description:beauty_salon.field_beauty_master__partner_id
@@ -123,34 +198,24 @@ msgid "Masseur"
 msgstr "Масажист"
 
 #. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_appointment__state__planning
-msgid "Planning"
-msgstr "Планування"
-
-#. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_appointment__state__finished
-msgid "Finished"
-msgstr "Виконано"
-
-#. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_appointment__state__cancelled
-msgid "Cancelled"
-msgstr "Скасовано"
-
-#. module: beauty_salon
-#: model:ir.model,name:beauty_salon.model_beauty_master
-msgid "Beauty Salon Master"
-msgstr "Майстер салону краси"
-
-#. module: beauty_salon
-#: model:ir.model,name:beauty_salon.model_beauty_client
-msgid "Beauty Salon Client"
-msgstr "Клієнт салону краси"
-
-#. module: beauty_salon
 #: model:ir.model,name:beauty_salon.model_beauty_service
-msgid "Beauty Salon Service"
+msgid "Beauty Service"
 msgstr "Послуга салону краси"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_service__name
+msgid "Service name"
+msgstr "Назва послуги"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_service__list_price
+msgid "List price"
+msgstr "Ціна"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_service__duration
+msgid "Duration (hours)"
+msgstr "Тривалість (години)"
 
 #. module: beauty_salon
 #: model:ir.model,name:beauty_salon.model_beauty_reminder
@@ -158,34 +223,14 @@ msgid "Beauty Salon Reminder"
 msgstr "Нагадування салону краси"
 
 #. module: beauty_salon
-#: model:ir.model,name:beauty_salon.model_beauty_appointment_line
-msgid "Beauty Salon Appointment Line"
-msgstr "Строка запису салону краси"
-
-#. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__service_id
-msgid "Service"
-msgstr "Послуга"
-
-#. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_appointment_line__appointment_id
-msgid "Appointment"
-msgstr "Запис"
-
-#. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_service__name
-msgid "Service"
-msgstr "Послуга"
-
-#. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_service__duration
-msgid "Duration"
-msgstr "Тривалість"
-
-#. module: beauty_salon
 #: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__client_id
 msgid "Client"
 msgstr "Клієнт"
+
+#. module: beauty_salon
+#: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__name
+msgid "Title"
+msgstr "Номер"
 
 #. module: beauty_salon
 #: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__service_id
@@ -203,41 +248,62 @@ msgid "Note"
 msgstr "Примітка"
 
 #. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__sent
-msgid "Sent"
-msgstr "Відправлено"
+#: model:ir.ui.menu,name:beauty_salon.beauty_salon_menu_root
+msgid "Beauty Salon"
+msgstr "Салон Краси"
 
 #. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__state
-msgid "State"
-msgstr "Статус"
+#: model:ir.ui.menu,name:beauty_salon.menu_beauty_salon_masters
+msgid "Masters"
+msgstr "Майстри"
 
 #. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_reminder__state__draft
-msgid "Draft"
-msgstr "Чорновик"
+#: model:ir.ui.menu,name:beauty_salon.menu_beauty_salon_clients
+msgid "Clients"
+msgstr "Клієнти"
 
 #. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_reminder__state__sent
-msgid "Sent"
-msgstr "Відправлено"
+#: model:ir.ui.menu,name:beauty_salon.menu_beauty_salon_services
+msgid "Services"
+msgstr "Послуги"
 
 #. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_reminder__state__done
-msgid "Done"
-msgstr "Виконано"
+#: model:ir.ui.menu,name:beauty_salon.menu_beauty_salon_appointment
+msgid "Appointment"
+msgstr "Записи"
 
 #. module: beauty_salon
-#: model:ir.model.fields.selection,name:beauty_salon.selection__beauty_reminder__state__cancelled
-msgid "Cancelled"
-msgstr "Скасовано"
+#: model:ir.ui.menu,name:beauty_salon.menu_beauty_salon_appointment_line
+msgid "Reports"
+msgstr "Звіти"
 
 #. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__email
-msgid "Email"
-msgstr "Електронна пошта"
+#: model:ir.ui.menu,name:beauty_salon.menu_beauty_salon_reminder
+msgid "Reminder"
+msgstr "Нагадування"
+
 
 #. module: beauty_salon
-#: model:ir.model.fields,field_description:beauty_salon.field_beauty_reminder__phone
-msgid "Phone"
-msgstr "Телефон"
+#: model:ir.ui.menu,name:beauty_salon.view_tree_beauty_master
+msgid "Masters"
+msgstr "Майстри"
+
+#. module: beauty_salon
+#: model:ir.ui.menu,name:beauty_salon.view_form_beauty_master
+msgid "Masters"
+msgstr "Майстри"
+
+#. module: beauty_salon
+#: model:ir.ui.menu,name:beauty_salon.action_beauty_salon_client_menu
+msgid "Clients"
+msgstr "Клієнти"
+
+#. module: beauty_salon
+#: model:ir.ui.menu,name:beauty_salon.view_form_beauty_сlient
+msgid "Clients"
+msgstr "Клієнти"
+
+#. module: beauty_salon
+#: model:ir.ui.menu,name:beauty_salon.view_form_beauty_сlient
+msgid "Clients"
+msgstr "Клієнти"

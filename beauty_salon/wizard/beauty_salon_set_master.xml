@@ -1,49 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--<odoo>-->
-<!--    &lt;!&ndash; Форма візарда &ndash;&gt;-->
-<!--    <record id="beauty_salon_set_master_wizard_form" model="ir.ui.view">-->
-<!--        <field name="name">set.master.wizard.form</field>-->
-<!--        <field name="model">set.master.wizard</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="Assign Master">-->
-<!--                <sheet>-->
-<!--                    <group>-->
-<!--                        <field name="client_ids" readonly="1"/>-->
-<!--                    </group>-->
-<!--                    <group>-->
-<!--                        <field name="master_ids" widget="many2many_tags"/>-->
-<!--                    </group>-->
-<!--                    <footer>-->
-<!--                        <button string="Assign Master" type="object" name="action_set_master" class="btn-primary"/>-->
-<!--                        <button string="Cancel" special="cancel" class="btn-secondary"/>-->
-<!--                    </footer>-->
-<!--                </sheet>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
-
-<!--    &lt;!&ndash; Серверна дія &ndash;&gt;-->
-<!--    <record id="action_assign_master_server" model="ir.actions.server">-->
-<!--        <field name="name">Assign Master</field>-->
-<!--        <field name="model_id" ref="model_beauty_client"/>-->
-<!--        <field name="binding_model_id" ref="model_beauty_client"/>-->
-<!--        <field name="binding_view_types">list</field>-->
-<!--        <field name="state">code</field>-->
-<!--        <field name="code">-->
-<!--if records:-->
-<!--    action = {-->
-<!--        'type': 'ir.actions.act_window',-->
-<!--        'name': 'Assign Master',-->
-<!--        'res_model': 'set.master.wizard',-->
-<!--        'view_mode': 'form',-->
-<!--        'target': 'new',-->
-<!--        'context': {'active_ids': records.ids}-->
-<!--    }-->
-<!--        </field>-->
-<!--    </record>-->
-<!--</odoo>-->
-
 <odoo>
   <record id="view_change_master_wizard_form" model="ir.ui.view">
     <field name="name">change.master.wizard.form</field>
@@ -62,13 +18,6 @@
     </field>
   </record>
 
-<!--  <record id="action_change_master_wizard" model="ir.actions.act_window">-->
-<!--    <field name="name">Change Master</field>-->
-<!--    <field name="res_model">change.master.wizard</field>-->
-<!--    <field name="view_mode">form</field>-->
-<!--    <field name="target">new</field>-->
-<!--    <field name="context">{'default_appointment_id': active_id}</field>-->
-<!--  </record>-->
         <record id="action_change_master_wizard2" model="ir.actions.server">
         <field name="name">Change Master</field>
         <field name="model_id" ref="model_beauty_appointment"/>

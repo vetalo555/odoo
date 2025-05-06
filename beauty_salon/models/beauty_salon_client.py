@@ -1,9 +1,12 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
-from odoo.tools.translate import _
+
 
 
 class Client(models.Model):
+    """
+        Represents a beauty salon client.
+        Manages client information, appointments, and loyalty program.
+        """
     _name = 'beauty.client'
     _description = 'Beauty Salon Client'
     _inherits = {'res.partner': 'partner_id'}
@@ -23,6 +26,9 @@ class Client(models.Model):
 
     @api.depends('appointment_ids.state')
     def _compute_visit_count(self):
+        """
+                Calculates the total number of finished appointments for the client.
+                """
         for client in self:
             client.visit_count = self.env['beauty.appointment'].search_count([
                 ('client_id', '=', client.id),
@@ -30,6 +36,12 @@ class Client(models.Model):
             ])
     @api.depends('visit_count')
     def _compute_discount(self):
+        """
+                Calculates the client's discount based on their visit count.
+                - 10% discount for 10+ visits
+                - 5% discount for 5-9 visits
+                - 0% discount for less than 5 visits
+                """
         for client in self:
             if client.visit_count >= 10:
                 client.discount = 10.0

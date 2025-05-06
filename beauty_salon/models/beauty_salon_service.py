@@ -1,6 +1,10 @@
 from odoo import models, fields
 
 class BeautyService(models.Model):
+    """
+       Represents a beauty salon service.
+       Manages service information, pricing, and duration.
+       """
     _name = 'beauty.service'
     _description = 'Beauty Service'
 
