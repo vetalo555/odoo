@@ -97,9 +97,6 @@ class BeautyAppointment(models.Model):
     #     return super().write(vals)
     @api.model
     def create(self, vals):
-        # if not vals.get('name'):
-        #     vals['name'] = self.env['ir.sequence'].next_by_code('beauty.appointment') or 'New'
-        # appointment = super().create(vals)
         if not vals.get('name'):
             # Отримуємо наступний номер
             sequence = self.env['ir.sequence'].search([('code', '=', 'beauty.appointment')], limit=1)
@@ -144,14 +141,8 @@ class BeautyAppointment(models.Model):
     def _deactivate_reminders(self):
         """Автоматично деактивує нагадування, якщо статус змінюється з 'planning'"""
         if self.state != 'planning':
-            reminders = self.env['beauty.reminder'].search([
-                ('appointment_id', '=', self.id),
-                ('active', '=', True)
-            ])
-            reminders.write({
-                'active': False,
-                'note': f'Деактивовано через зміну статусу запису {self.name}'
-            })
+            reminders = self.env['beauty.reminder'].search([('client_id', '=', self.client_id.id)])
+            reminders.write({'active': False})  # Деактивація записів
 
     def unlink(self):
         """Видаляє відповідні записи в beauty.reminder, коли видаляється beauty.appointment"""
@@ -185,3 +176,29 @@ class BeautyAppointment(models.Model):
                 })
 
         return super().write(vals)
+
+    @api.constrains('master_id', 'client_id', 'appointment_date')
+    def _check_appointment_constraints(self):
+        for rec in self:
+            if not rec.master_id.is_available:
+                raise ValidationError(_("Cannot assign an inactive master."))
+
+            # Перевірка: той самий майстер уже має запис на цю дату і час
+            duplicates = self.search([
+                ('id', '!=', rec.id),
+                ('master_id', '=', rec.master_id.id),
+                ('appointment_date', '=', rec.appointment_date),
+                ('state', '=', 'planning')
+            ])
+            if duplicates:
+                raise ValidationError(_("This master already has an appointment at this date and time."))
+
+            # Перевірка: клієнт уже записаний на той самий час
+            client_conflicts = self.search([
+                ('id', '!=', rec.id),
+                ('client_id', '=', rec.client_id.id),
+                ('appointment_date', '=', rec.appointment_date),
+                ('state', '=', 'planning')
+            ])
+            if client_conflicts:
+                raise ValidationError(_("This client already has an appointment at this date and time."))

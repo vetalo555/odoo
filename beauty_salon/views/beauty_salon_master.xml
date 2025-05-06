@@ -102,5 +102,6 @@
     <menuitem id="action_beauty_salon_master_menu"
               action="action_beauty_salon_master_window"
               parent="menu_beauty_salon_masters"
-              name="Masters" sequence="200"/>
+              name="Masters" sequence="200"
+              groups="beauty_salon.group_beauty_salon_admin"/>
 </odoo>

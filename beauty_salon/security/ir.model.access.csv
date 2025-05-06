@@ -1,10 +1,18 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_beauty_client_admin,beauty.client.admin,model_beauty_client,base.group_user,1,1,1,1
-access_beauty_master_admin,beauty.master.admin,model_beauty_master,base.group_user,1,1,1,1
-access_beauty_service_admin,beauty.service.admin,model_beauty_service,base.group_user,1,1,1,1
-access_beauty_appointment_admin,beauty.appointment.admin,model_beauty_appointment,base.group_user,1,1,1,1
-access_beauty_appointment_line_admin,beauty.appointment.line.admin,model_beauty_appointment_line,base.group_user,1,1,1,1
-access_beauty_reminder_admin,beauty.reminder.admin,model_beauty_reminder,base.group_user,1,1,1,1
-access_beauty_change_master_wizard,beauty.change.master.wizard,model_change_master_wizard,base.group_user,1,1,1,1
-access_beauty_master_workload_report_wizard,beauty.master.workload.report.wizard,model_master_workload_report_wizard,base.group_user,1,1,1,1
 
+
+access_beauty_salon_appointment_user,beauty.appointment.user,model_beauty_appointment,beauty_salon.group_beauty_salon_user,1,0,0,0
+access_beauty_salon_appointment_line_user,beauty.appointment_line.user,model_beauty_appointment_line,beauty_salon.group_beauty_salon_user,1,0,0,0
+access_beauty_salon_client_user,beauty.client.user,model_beauty_client,beauty_salon.group_beauty_salon_user,1,0,0,0
+access_beauty_salon_master_user,beauty.master.user,model_beauty_master,beauty_salon.group_beauty_salon_user,1,0,0,0
+access_beauty_salon_reminder_user,beauty.reminder.user,model_beauty_reminder,beauty_salon.group_beauty_salon_user,1,0,0,0
+access_beauty_salon_service_user,beauty.service.user,model_beauty_service,beauty_salon.group_beauty_salon_user,1,0,0,0
+
+access_beauty_salon_appointment_admin,beauty.appointment.admin,model_beauty_appointment,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_salon_appointment_line_admin,beauty.appointment_line.admin,model_beauty_appointment_line,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_salon_client_admin,beauty.client.admin,model_beauty_client,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_salon_master_admin,beauty.master.admin,model_beauty_master,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_salon_reminder_admin,beauty.reminder.admin,model_beauty_reminder,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_salon_service_admin,beauty.service.admin,model_beauty_service,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_change_master_wizard,beauty.change.master.wizard,model_change_master_wizard,beauty_salon.group_beauty_salon_admin,1,1,1,1
+access_beauty_master_workload_report_wizard,beauty.master.workload.report.wizard,model_master_workload_report_wizard,beauty_salon.group_beauty_salon_admin,1,1,1,1

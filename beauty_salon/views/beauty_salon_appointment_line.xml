@@ -67,7 +67,8 @@
     <menuitem id="action_beauty_salon_appointment_line_menu"
               action="action_beauty_salon_appointment_line_window2"
               parent="menu_beauty_salon_appointment_line"
-              name="Reports" sequence="200"/>
+              name="Reports" sequence="200"
+              groups="beauty_salon.group_beauty_salon_admin"/>
 
     <record id="action_appointment_workload_report" model="ir.actions.act_window">
         <field name="name">Master Workload Report</field>

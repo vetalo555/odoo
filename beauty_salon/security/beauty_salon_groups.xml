@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Category -->
+        <record id="category_beauty_salon" model="ir.module.category">
+            <field name="name">Beauty Salon</field>
+            <field name="description">Beauty Salon Management</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- User Group -->
+        <record id="group_beauty_salon_user" model="res.groups">
+            <field name="name">Beauty Salon User</field>
+            <field name="category_id" ref="beauty_salon.category_beauty_salon"/>
+        </record>
+
+        <!-- Admin Group -->
+        <record id="group_beauty_salon_admin" model="res.groups">
+            <field name="name">Beauty Salon Admin</field>
+            <field name="category_id" ref="beauty_salon.category_beauty_salon"/>
+            <field name="implied_ids" eval="[(4, ref('beauty_salon.group_beauty_salon_user'))]"/>
+        </record>
+    </data>
+</odoo>

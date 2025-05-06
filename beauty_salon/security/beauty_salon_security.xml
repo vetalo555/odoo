@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Record rule for Users to see only their own records -->
+        <record id="rule_user_own_records" model="ir.rule">
+            <field name="name">Users can only see their own records</field>
+            <field name="model_id" ref="model_beauty_appointment"/>
+            <field name="domain_force">[
+                '|',
+                ('client_id.partner_id', '=', user.partner_id.id),
+                ('master_id.partner_id', '=', user.partner_id.id)
+            ]</field>
+            <field name="groups" eval="[(4, ref('beauty_salon.group_beauty_salon_user'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+         <!-- Record rule for Users to see only their own Clients -->
+        <record id="rule_user_own_clients" model="ir.rule">
+            <field name="name">Users can only see their own clients</field>
+            <field name="model_id" ref="model_beauty_client"/>
+            <field name="domain_force">[
+                ('partner_id', '=', user.partner_id.id),
+            ]</field>
+            <field name="groups" eval="[(4, ref('beauty_salon.group_beauty_salon_user'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!-- Record rule for Admins to have full access -->
+        <record id="rule_admin_full_access" model="ir.rule">
+            <field name="name">Admins have full access</field>
+            <field name="model_id" ref="model_beauty_appointment"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('beauty_salon.group_beauty_salon_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+<!--         Record rule for Admins to have full access to clients -->
+        <record id="rule_admin_full_access_clients" model="ir.rule">
+            <field name="name">Admins have full access to clients</field>
+            <field name="model_id" ref="model_beauty_client"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('beauty_salon.group_beauty_salon_admin'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

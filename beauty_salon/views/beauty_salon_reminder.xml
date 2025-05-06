@@ -55,6 +55,7 @@
     <menuitem id="action_beauty_salon_reminder_menu"
               action="action_beauty_salon_reminder_window"
               parent="menu_beauty_salon_reminder"
-              name="Reminder" sequence="200"/>
+              name="Reminder" sequence="200"
+              groups="beauty_salon.group_beauty_salon_admin"/>
 
 </odoo>

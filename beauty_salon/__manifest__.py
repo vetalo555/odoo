@@ -12,7 +12,7 @@ Main features:
 - Service catalog
 - Reminders for recurring services
 - Reports on master workload and services provided
-- Bonus calculation
+- Discount calculation
     """,
     'category': 'Services/Beauty',
     'author': 'Movliaiko Vitalii',
@@ -29,6 +29,8 @@ Main features:
         'python': [],
     },
     'data': [
+        'security/beauty_salon_groups.xml',
+        'security/beauty_salon_security.xml',
         'security/ir.model.access.csv',
         'views/beauty_salon_menu.xml',
         'wizard/beauty_salon_set_master.xml',
