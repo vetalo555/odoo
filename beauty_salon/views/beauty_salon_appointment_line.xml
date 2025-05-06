@@ -51,6 +51,7 @@
                            enable_counters="1"/>
                     <field name="client_id" string="Filter" hierarchize="1" select="one"
                            enable_counters="1"/>
+                    <field name="date_filter" string="Filter by Day" select="multi" enable_counters="1"/>
                 </searchpanel>
             </search>
         </field>
@@ -61,7 +62,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">beauty.appointment.line</field>
         <field name="view_mode">tree,pivot,graph</field>
-<!--        <field name="domain">[('appointment_id.state', '=', 'finished')]</field>-->
     </record>
 
     <menuitem id="action_beauty_salon_appointment_line_menu"
@@ -79,12 +79,3 @@
     </record>
 
 </odoo>
-
-<!--<record id="action_appointment_workload_report" model="ir.actions.act_window">-->
-<!--    <field name="name">Master Workload Report</field>-->
-<!--    <field name="res_model">master.workload.report.wizard</field>-->
-<!--    <field name="view_mode">form</field>-->
-<!--    <field name="target">new</field>-->
-<!--    <field name="binding_model_id" ref="model_beauty_appointment_line"/>-->
-<!--    <field name="binding_type">action</field>-->
-<!--</record>-->

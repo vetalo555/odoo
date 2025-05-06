@@ -12,6 +12,7 @@ class BeautyAppointmentLine(models.Model):
     discount = fields.Float(string='Discount (%)', compute='_compute_discount', store=True)
     total_price = fields.Float(string='Total Price', compute='_compute_total_price', store=True)
     appointment_state = fields.Selection(related='appointment_id.state', store=True)
+    #Client bonuses
     client_id = fields.Many2one(
         comodel_name='res.partner',
         string='Client',
@@ -19,6 +20,26 @@ class BeautyAppointmentLine(models.Model):
         related='appointment_id.client_id.partner_id',
         store=True,
     )
+
+    #Filters and group by date in view
+    date_filter = fields.Selection(
+        selection=lambda self: [(str(d), str(d)) for d in self._get_dates()],
+        string="Filter by Day",
+        compute="_compute_date_filter",
+        store=True
+    )
+
+    #Filters and group by date in view
+    @api.model
+    def _get_dates(self):
+        dates = self.env['beauty.appointment'].search([]).mapped('appointment_date')
+        return sorted(set(d.date() for d in dates if d))
+
+    #Filters and group by date in view
+    @api.depends('appointment_id.appointment_date')
+    def _compute_date_filter(self):
+        for record in self:
+            record.date_filter = str(record.appointment_id.appointment_date.date()) if record.appointment_id else False
 
     @api.depends('appointment_id.client_id', 'appointment_id.state')
     def _compute_discount(self):
@@ -48,3 +69,4 @@ class BeautyAppointmentLine(models.Model):
         for line in self:
             discount_multiplier = (100 - line.discount) / 100
             line.total_price = line.price * line.qty * discount_multiplier
+

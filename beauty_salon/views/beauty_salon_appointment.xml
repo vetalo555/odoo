@@ -50,6 +50,20 @@
         </field>
     </record>
 
+    <record id="view_beauty_appointment_search" model="ir.ui.view">
+        <field name="name">beauty.appointment.search</field>
+        <field name="model">beauty.appointment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="master_id"/>
+                <filter name="today" string="Today" domain="[('appointment_date','=', context_today())]" />
+                <filter name="planned" string="Planned" domain="[('state','=','planned')]" />
+            </search>
+        </field>
+    </record>
+
     <record id="view_beauty_appointment_calendar" model="ir.ui.view">
         <field name="name">beauty.appointment.calendar</field>
         <field name="model">beauty.appointment</field>
@@ -65,23 +79,6 @@
         </field>
     </record>
 
-    <record id="view_beauty_appointment_search" model="ir.ui.view">
-        <field name="name">beauty.appointment.search</field>
-        <field name="model">beauty.appointment</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <field name="client_id"/>
-                <field name="master_id"/>
-                <searchpanel>
-                    <field name="master_id" string="Masters" icon="fa-user-md"
-                           select="multi" enable_counters="1"/>
-                </searchpanel>
-            </search>
-        </field>
-    </record>
-
-
     <record id="action_beauty_salon_appointment_window" model="ir.actions.act_window">
         <field name="name">Appointment</field>
         <field name="type">ir.actions.act_window</field>
@@ -93,4 +90,5 @@
               action="action_beauty_salon_appointment_window"
               parent="menu_beauty_salon_appointment"
               name="Appointment" sequence="200"/>
+
 </odoo>

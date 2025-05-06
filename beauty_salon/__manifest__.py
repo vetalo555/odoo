@@ -29,14 +29,7 @@ Main features:
         'python': [],
     },
     'data': [
-        # Security
-        # 'security/beauty_salon_security.xml',
         'security/ir.model.access.csv',
-        #
-        # # Data
-        # 'data/beauty_salon_data.xml',
-        #
-        # # Views
         'views/beauty_salon_menu.xml',
         'wizard/beauty_salon_set_master.xml',
         'wizard/master_workload_report_wizard.xml',
@@ -47,6 +40,7 @@ Main features:
         'views/beauty_salon_appointment.xml',
         'views/beauty_salon_appointment_line.xml',
         'views/beauty_salon_reminder.xml',
+        'data/cron_job.xml',
     ],
     'demo': [
         'data/demo_master_client_service.xml',
@@ -54,7 +48,7 @@ Main features:
         'data/demo_reminder.xml',
     ],
     'images': [
-        # 'static/description/banner.png',
+        'static/description/icon.png',
     ],
     'installable': True,
     # 'application': True,
